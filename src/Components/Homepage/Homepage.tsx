@@ -17,7 +17,7 @@ interface HomepageProps {
   savedKanji: KanjiData2[]
 }
 
-const Homepage = ({studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji}: HomepageProps) => {
+const Homepage: React.FC<HomepageProps> = ({studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji}) => {
 
   return (
     <div className='main-container'>
@@ -26,7 +26,7 @@ const Homepage = ({studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji,
         <article className='info-home-box'>Click on a Kanji to see more details, and save!</article>
         {error.error && <ErrorMsg message={error.message} />}
         <RandomKanji studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} mainKanji={mainKanji} savedKanji={savedKanji}/>
-        <KanjiSet setKanjiSet={setKanjiSet} saveKanji={saveKanji}  kanjiSet={kanjiSet} changeMainKanji={changeMainKanji}/>
+        <KanjiSet setKanjiSet={setKanjiSet} kanjiSet={kanjiSet} changeMainKanji={changeMainKanji}/>
       </main>
     </div>
   )
