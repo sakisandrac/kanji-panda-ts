@@ -36,7 +36,7 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({setStudiedKanji, studiedKanji,
       {location.pathname.includes('saved') && 
           <div className='check-container'>
             <p className='studied-text'><b>Studied?</b></p>
-            <img onClick={() => addToStudied(mainKanji)} className='check-icon' src={studied ? checked : unchecked}/>
+            <img onClick={() => addToStudied(mainKanji)} className='check-icon' src={studied ? checked : unchecked} alt="check button icon"/>
           </div>}
         <p className='main-char'>{mainKanji?.ka_utf}</p>
         <div className='description'>

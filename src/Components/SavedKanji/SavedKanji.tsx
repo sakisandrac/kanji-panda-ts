@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RandomKanji from '../RandomKanji/RandomKanji';
 import './SavedKanji.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
-import { KanjiData, KanjiData2, ErrorType } from '../../types';
+import { KanjiData, KanjiData2 } from '../../types';
 
 interface SavedKanjiProps {
   studiedKanji: KanjiData2[]

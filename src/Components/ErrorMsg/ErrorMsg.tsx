@@ -11,7 +11,7 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({message}) => {
     if (message.includes("404")) {
       return (
         <main className='dashboard'>
-          <img src={notFoundImg} />
+          <img alt="404 not found error message" src={notFoundImg} />
         </main>
       )
     } else {
