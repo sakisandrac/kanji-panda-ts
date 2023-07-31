@@ -1,10 +1,5 @@
 import { getRandNum, cleanUpData } from "./utils";
 
-interface HeadersI {
-  'X-RapidAPI-Key': string,
-  'X-RapidAPI-Host': string
-}
-
 const getKanji = async (num :number) => {
   const res = await fetch(`https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/?ks=${num}`, {
     method: 'GET',
