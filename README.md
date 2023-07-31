@@ -27,4 +27,3 @@ The biggest challenge about this project was the "my saved kanji" page. This pag
 5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 6. You can also view the project <a href="https://kanji-panda.vercel.app">here</a>.
 7. Use control C to stop the server.
-8. To test, run the command `npm run cypress`.
