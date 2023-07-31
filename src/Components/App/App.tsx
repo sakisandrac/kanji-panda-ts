@@ -7,13 +7,14 @@ import { singleKanjiInfo } from '../../apiCalls';
 import SearchPage from '../SearchPage/SearchPage';
 import './App.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
+import { KanjiData, KanjiData2, ErrorType } from '../../types';
 
-const App = () => {
-  const [mainKanji, setMainKanji] = useState({});
-  const [kanjiSet, setKanjiSet] = useState([]);
-  const [savedKanji, setSavedKanji] = useState([]);
-  const [error, setError] = useState({error: false, message: ""});
-  const [studiedKanji, setStudiedKanji] = useState([]);
+const App: React.FC = () => {
+  const [mainKanji, setMainKanji] = useState<KanjiData>();
+  const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
+  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
+  const [error, setError] = useState<ErrorType>({error: false, message: ""});
+  const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
 
   useEffect(()=> {
     if (kanjiSet.length < 5) {
@@ -41,11 +42,11 @@ const App = () => {
     }
   }
 
-  const changeMainKanji = (kanji) => {
+  const changeMainKanji = (kanji: KanjiData) => {
     setMainKanji(kanji);
   }
   
-  const saveKanji = (kanji) => {
+  const saveKanji = (kanji: KanjiData) => {
     const isSaved = savedKanji.find(saved => {
       return saved._id === kanji._id;
     })
