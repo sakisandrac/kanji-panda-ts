@@ -8,6 +8,7 @@ import SearchPage from '../SearchPage/SearchPage';
 import './App.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2, ErrorType } from '../../types';
+import Quiz from '../Quiz/Quiz';
 
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
@@ -15,6 +16,7 @@ const App: React.FC = () => {
   const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
+  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([])
 
   useEffect(()=> {
     if (kanjiSet.length < 5) {
@@ -54,11 +56,11 @@ const App: React.FC = () => {
     const kanjiData = {...kanji, studied: false}
     if (!isSaved) {
       setSavedKanji(prev => [...prev, kanjiData]);
+      setPendingKanji(prev => [...prev, kanjiData]);
     } else {
-      setSavedKanji(() => {
-        const filteredKanji = savedKanji.filter(k => k._id !== kanji._id);
-        return filteredKanji;
-      })
+      const filteredKanji = savedKanji.filter(k => k._id !== kanji._id);
+      setSavedKanji(filteredKanji);
+      setPendingKanji(filteredKanji);
     }
   }
 
@@ -70,6 +72,7 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/" element={
         <Homepage
+          setPendingKanji={setPendingKanji}
           studiedKanji={studiedKanji} 
           setStudiedKanji={setStudiedKanji}
           error={error}
@@ -79,8 +82,9 @@ const App: React.FC = () => {
           kanjiSet={kanjiSet} 
           mainKanji={mainKanji} 
           changeMainKanji={changeMainKanji}/>} />
-      <Route path="/saved" element={<SavedKanji studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
+      <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
       <Route path="/search" element={<SearchPage saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
+      <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />}/>
       <Route path="*" element={<ErrorMsg message={"404"} />}/>
     </Routes>
   </>
