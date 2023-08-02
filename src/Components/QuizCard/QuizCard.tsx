@@ -6,9 +6,10 @@ import './QuizCard.css';
 interface QuizCardProps {
   quizSet: KanjiData2[],
   sortCards: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, currentCard: KanjiData2) => void,
+  setStart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
+const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards, setStart}) => {
 
   const [remainingCards, setRemainingCards] = useState<KanjiData2[]>(quizSet);
   const [finishedCards, setFinishedCards] = useState<KanjiData2[]>([]);
@@ -62,6 +63,10 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
     console.log('f', finishedCards)
   }, [remainingCards, finishedCards])
 
+  const restartQuiz = () => {
+    setStart(false)
+  }
+
   return (
     <div className='card-page info-cards-box'>
       <article className='card-container'>
@@ -77,9 +82,8 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
         {isFinished && 
         <div className='card-container'>
           <p className='header'>You've Finished This Set!</p>
-          <button className='again-btn'>Try Again?</button>
+          <button className='again-btn' onClick={restartQuiz}>Try Again?</button>
         </div>}
-
       </article>
     </div>
   )
