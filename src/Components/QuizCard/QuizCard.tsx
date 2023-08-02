@@ -51,7 +51,7 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
         <p className='main-char'>{currentCard[0].ka_utf}</p>
         <div className='description'>
           {showButtons && <p>{currentCard[0].meaning}</p>}
-          <button onClick={revealAnswer} className='save-btn'>Reveal Answer</button>
+          {!showButtons && <button onClick={revealAnswer} className='save-btn'>Reveal Answer</button>}
         </div>
       </div>
     )
@@ -63,12 +63,12 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
   }, [remainingCards, finishedCards])
 
   return (
-    <div className='card-page'>
+    <div className='card-page info-cards-box'>
       <article className='card-container'>
         {currentCard.length > 0 && renderCards()}
         {showButtons && !isFinished &&
           <div className='info-saved-box'>
-            <p className='info-text'>I got this kanji:</p>
+            <p className='card-text'>I got this kanji:</p>
             <div className='btn-container'>
               <button value='correct' onClick={(e) => { getNextCard(e) }} className='save-btn'>Correct</button>
               <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
@@ -77,7 +77,7 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
         {isFinished && 
         <div className='card-container'>
           <p className='header'>You've Finished This Set!</p>
-          <button className='start-btn'>Try Again?</button>
+          <button className='again-btn'>Try Again?</button>
         </div>}
 
       </article>
