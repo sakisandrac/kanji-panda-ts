@@ -1,7 +1,7 @@
 import { getRandNum, cleanUpData } from "./utils";
 
-const getKanji = async (num :number) => {
-  const res = await fetch(`https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/?ks=${num}`, {
+const getKanji = async () => {
+  const res = await fetch(`https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/`, {
     method: 'GET',
     headers: {
       'X-RapidAPI-Key': process.env.REACT_APP_API_KEY!,
@@ -38,7 +38,7 @@ const getSingleKanji = async (type: string, char: string) => {
 
 const singleKanjiInfo = async () => {
   try {
-    const data = await getKanji(getRandNum(20));
+    const data = await getKanji();
     const randIndex = getRandNum(data.length);
     const kanji = data[randIndex].kanji.character;
     const kanjiData = await getSingleKanji('kanji', kanji);

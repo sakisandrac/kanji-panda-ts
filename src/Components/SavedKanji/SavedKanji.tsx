@@ -3,18 +3,20 @@ import RandomKanji from '../RandomKanji/RandomKanji';
 import './SavedKanji.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2 } from '../../types';
+import { Link } from 'react-router-dom';
 
 interface SavedKanjiProps {
-  studiedKanji: KanjiData2[]
+  studiedKanji: KanjiData2[],
   setStudiedKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   saveKanji:  (kanji: KanjiData) => void,
-  savedKanji: KanjiData2[]
+  savedKanji: KanjiData2[],
+  pendingKanji: KanjiData2[],
+  setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>
 }
 
-const SavedKanji: React.FC<SavedKanjiProps> = ({studiedKanji, setStudiedKanji, saveKanji, savedKanji}) => {
+const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, studiedKanji, setStudiedKanji, saveKanji, savedKanji}) => {
 
   const [viewMode, setViewMode] = useState<string>("saved");
-  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([])
 
   const displayKanji = (view: string): any[] => {
     let kanjiSet: any[] = []
@@ -56,7 +58,10 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({studiedKanji, setStudiedKanji, s
     <div className='saved-page'>
       <main className='dashboard'>
         <h1 className='header'>My Saved Kanji</h1>
-        <article className='info-home-box'>Study your saved Kanji and check them off when you're done learning!</article>
+        <article className='info-saved-box'>
+          <p className='info-text'>Study your saved Kanji and check them off when you're done learning!</p>
+          <Link className='quiz-link' to='/quiz'><button className='quiz-btn'>When you're ready, try our QUIZ</button></Link>
+        </article>
         <div className='select-container'>
           <label className='select-label' htmlFor='view-select'>Currently Viewing:</label>
           <select id='view-select' onChange={(e) => { setView(e) }} className='type-select'>

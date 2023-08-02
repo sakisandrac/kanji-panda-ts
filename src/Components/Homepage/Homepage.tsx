@@ -14,18 +14,19 @@ interface HomepageProps {
   kanjiSet: KanjiData[],
   changeMainKanji: (kanji: KanjiData) => void,
   saveKanji:  (kanji: KanjiData) => void,
-  savedKanji: KanjiData2[]
+  savedKanji: KanjiData2[],
+  setPendingKanji : React.Dispatch<React.SetStateAction<KanjiData2[]>>
 }
 
-const Homepage: React.FC<HomepageProps> = ({studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji}) => {
+const Homepage: React.FC<HomepageProps> = ({setPendingKanji, studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji}) => {
 
   return (
     <div className='main-container'>
       <main className='dashboard'>
         <h1 className='header'>Let's Study Kanji!</h1>
-        <article className='info-home-box'>Click on a Kanji to see more details, and save!</article>
+        <article className='info-home-box'><p className='info-text'>Click on a Kanji to see more details, and save!</p></article>
         {error.error && <ErrorMsg message={error.message} />}
-        <RandomKanji studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} mainKanji={mainKanji} savedKanji={savedKanji}/>
+        <RandomKanji setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} mainKanji={mainKanji} savedKanji={savedKanji}/>
         <KanjiSet setKanjiSet={setKanjiSet} kanjiSet={kanjiSet} changeMainKanji={changeMainKanji}/>
       </main>
     </div>

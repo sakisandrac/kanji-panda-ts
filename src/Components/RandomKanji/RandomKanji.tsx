@@ -10,10 +10,11 @@ interface RandomKanjiProps {
   setStudiedKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   mainKanji: KanjiData | KanjiData2 | undefined,
   saveKanji:  (kanji: KanjiData) => void,
-  savedKanji: KanjiData2[]
+  savedKanji: KanjiData2[],
+  setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>
 }
 
-const RandomKanji: React.FC<RandomKanjiProps> = ({setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
+const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
 
  const studied = studiedKanji?.some(k => k._id === mainKanji?._id);
