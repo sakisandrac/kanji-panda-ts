@@ -1,6 +1,6 @@
 # Kanji Panda - A Japanese Kanji Study Companion
 Unleash the power of kanji with this captivating study companion! Upon page load, users are greeted with 5 random characters. Dive into pronunciation and meanings at a tap, and save the ones you love to study. Streamline your progress by organizing learned kanji separately. Plus, easily search by English meaning or character to fuel your language journey. Your path to kanji mastery starts here! 
-Try this app <a href="https://kanji-panda.vercel.app">here</a>!
+Try this app <a href="https://kanji-panda-ts.vercel.app/">here</a>!
 
 ## Technologies Used
 React, PropTypes, React router v6, create-react-app, CSS, HTML, JavaScript, Cypress
@@ -25,5 +25,5 @@ The biggest challenge about this project was the "my saved kanji" page. This pag
 3. Run the command  `npm install` to install dependencies.
 4. Run the command `npm start` to start the server.
 5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-6. You can also view the project <a href="https://kanji-panda.vercel.app">here</a>.
+6. You can also view the project <a href="https://kanji-panda-ts.vercel.app/">here</a>.
 7. Use control C to stop the server.
