@@ -80,14 +80,13 @@ select:focus {
 input:focus {
   outline: none;
   border: 3px solid #fa8bca;
-}
+} 
 
 @media (max-width: 850px) {
   .select-container {
     width: 70%;
   }
-  
-  .info-saved-box {
+ 
+.info-saved-box {
     height: 30%;
-  }
-}
+ }
