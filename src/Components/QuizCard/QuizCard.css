@@ -13,6 +13,7 @@
   background-color:  #fa8bca;
   font-family: 'Noto Sans SC', sans-serif;
   font-size: 1.3rem;
+  margin-top: 15px;
 }
 
 .again-btn:hover {
@@ -31,11 +32,26 @@
   background-color: #6f6f823c;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
   border-radius: 20px;
-  height: 40%;
+  height: 60%;
   width: 40%;
 }
 
 .card-text {
   margin: 5px 0 0 0;
   font-size: 1.2rem;
+}
+
+.score-text {
+  font-size: 2rem;
+}
+
+.happy-panda {
+  width: 200px;
+}
+
+@media (max-width: 600px) {
+  .info-cards-box {
+    width: 100%;
+  }
+
 }

@@ -25,6 +25,7 @@
     "Components/Nav/Nav.tsx",
     "Components/RandomKanji/RandomKanji.tsx",
     "Components/ErrorMsg/ErrorMsg.tsx",
-    "Components/Quiz/Quiz.tsx"
+    "Components/Quiz/Quiz.tsx",
+    "Components/QuizCard/QuizCard.tsx"
   ]
 }

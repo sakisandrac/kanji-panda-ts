@@ -60,6 +60,11 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
     setStart(true)
   }
 
+  useEffect(() => {
+    setCorrectCards([])
+    setIncorrectCards([])
+  },[start])
+
   return (
     <div className='main-container'>
       <main className='dashboard'>
@@ -78,7 +83,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
           </div>
         </section>}
         {!quizMode && <img className='quiz-panda' src={quizPanda} />}
-        {quizSet.length > 0 && start && <QuizCard setStart={setStart} sortCards={sortCards} quizSet={quizSet}/>}
+        {quizSet.length > 0 && start && <QuizCard correctCards={correctCards} setStart={setStart} sortCards={sortCards} quizSet={quizSet}/>}
       </main>
     </div>
   )

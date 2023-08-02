@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { KanjiData2 } from '../../types';
 import { getRandNum } from '../../utils';
 import './QuizCard.css';
+import happyPanda from '../../images/panda-happy.png'
 
 interface QuizCardProps {
   quizSet: KanjiData2[],
+  correctCards: KanjiData2[],
   sortCards: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, currentCard: KanjiData2) => void,
   setStart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards, setStart}) => {
+const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, setStart}) => {
 
   const [remainingCards, setRemainingCards] = useState<KanjiData2[]>(quizSet);
   const [finishedCards, setFinishedCards] = useState<KanjiData2[]>([]);
@@ -38,11 +40,9 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards, setStart}) => {
 
   useEffect(()=> {
     initialSet()
-    console.log('here')
   }, [])
 
   const revealAnswer = () => {
-    console.log('answer')
     setShowButtons(true)
   }
 
@@ -67,21 +67,29 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards, setStart}) => {
     setStart(false)
   }
 
+  const calculateScore = () => {
+    const total = quizSet.length
+    const correct = correctCards.length
+    return `You got ${correct}/${total} correct!`
+  }
+
   return (
     <div className='card-page info-cards-box'>
       <article className='card-container'>
-        {currentCard.length > 0 && renderCards()}
+        {currentCard.length > 0 && !isFinished && renderCards()}
         {showButtons && !isFinished &&
           <div className='info-saved-box'>
             <p className='card-text'>I got this kanji:</p>
             <div className='btn-container'>
+            <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
               <button value='correct' onClick={(e) => { getNextCard(e) }} className='save-btn'>Correct</button>
-              <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
             </div>
         </div>}
         {isFinished && 
         <div className='card-container'>
           <p className='header'>You've Finished This Set!</p>
+          <div className='check-container'><p className='score-text'>{calculateScore()}</p></div>
+          <img className='happy-panda' src={happyPanda} alt="Happy panda icon" />
           <button className='again-btn' onClick={restartQuiz}>Try Again?</button>
         </div>}
       </article>
