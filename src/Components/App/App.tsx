@@ -13,10 +13,16 @@ import Quiz from '../Quiz/Quiz';
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
   const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
-  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
+  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("savedKanji")!) || []);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
-  const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
-  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([])
+  const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("studiedKanji")!) || []);
+  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || [])
+
+  useEffect(() => {
+    localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
+    localStorage.setItem("studiedKanji", JSON.stringify(studiedKanji))
+    localStorage.setItem("pendingKanji", JSON.stringify(pendingKanji))
+}, [savedKanji, pendingKanji, studiedKanji])
 
   useEffect(()=> {
     if (kanjiSet.length < 5) {
