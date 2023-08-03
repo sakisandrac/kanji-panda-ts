@@ -4,6 +4,7 @@ import './SavedKanji.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2 } from '../../types';
 import { Link } from 'react-router-dom';
+import Charts from '../Charts/Charts';
 
 interface SavedKanjiProps {
   studiedKanji: KanjiData2[],
@@ -58,10 +59,13 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, s
     <div className='saved-page'>
       <main className='dashboard'>
         <h1 className='header'>My Saved Kanji</h1>
-        <article className='info-saved-box'>
-          <p className='info-text'>Study your saved Kanji and check them off when you're done learning!</p>
-          <Link className='quiz-link' to='/quiz'><button className='quiz-btn'>When you're ready, try our QUIZ</button></Link>
-        </article>
+        <div className='saved-chart-container'>
+          <article className='info-saved-box'>
+            <p className='info-text'>Study your saved Kanji and check them off when you're done learning!</p>
+            <Link className='quiz-link' to='/quiz'><button className='quiz-btn'>When you're ready, try our QUIZ</button></Link>
+          </article>
+          {savedKanji.length > 0 && <Charts labels={['Studied', 'Not Studied Yet']} title={'Kanji Studied'} variables={[studiedKanji, savedKanji]} />}
+        </div>
         <div className='select-container'>
           <label className='select-label' htmlFor='view-select'>Currently Viewing:</label>
           <select id='view-select' onChange={(e) => { setView(e) }} className='type-select'>

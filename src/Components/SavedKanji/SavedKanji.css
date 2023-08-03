@@ -13,6 +13,13 @@
   width: 100%;
 }
 
+.saved-chart-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .header {
   font-family: 'Bebas Neue', sans-serif; 
   font-size: 3.3rem;
@@ -36,7 +43,7 @@
   background-color: #6f6f823c;
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 16%);
   border-radius: 20px;
-  height: 15%;
+  height: 80%;
   width: 40%;
 }
 

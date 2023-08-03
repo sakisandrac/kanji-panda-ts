@@ -63,7 +63,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
     <div className='main-container'>
       <main className='dashboard'>
         <h1 className='header'>Quiz Mode</h1>
-        <article className='info-saved-box'>
+        <article className='info-home-box'>
           <p className='info-text'>Quiz yourself on Kanji English Meanings</p>
         </article>
         {!checkKanjiLength() ? <div className='error-box'><ErrorMsg message={"Must save at least 5 kanji to start quiz!"}/></div>
