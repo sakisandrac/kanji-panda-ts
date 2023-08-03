@@ -1,5 +1,6 @@
 import React from 'react';
 import notFoundImg from '../../images/404.png';
+import './ErrorMsg.css';
 
 interface ErrorMsgProps {
   message: string
@@ -15,7 +16,7 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({message}) => {
         </main>
       )
     } else {
-      return <h1>{message}</h1>
+      return <h1 className='error-msg'>{message}</h1>
     }
   }
 

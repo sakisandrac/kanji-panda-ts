@@ -13,11 +13,7 @@ interface ChartsProps {
 }
 
 const Charts: React.FC<ChartsProps> = ({labels, title, variables}) => {
-//labels [studied, not studied yet]
-//title = 'Kanji Studied'
-//var1 = studied var2= not studied
-//var1 = correct var2= incorrect
-console.log(labels, title, variables)
+
   const data = {
     labels: labels,
     datasets: [

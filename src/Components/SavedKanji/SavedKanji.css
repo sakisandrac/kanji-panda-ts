@@ -96,6 +96,16 @@ input:focus {
   }
  
 .info-saved-box {
-    height: 30%;
+    height: 90%;
+    width: 100%;
  }
+
+ .saved-chart-container {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
+}
 }

@@ -11,7 +11,7 @@ interface RandomKanjiProps {
   mainKanji: KanjiData | KanjiData2 | undefined,
   saveKanji:  (kanji: KanjiData) => void,
   savedKanji: KanjiData2[],
-  setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>
+  setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
 }
 
 const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
@@ -24,9 +24,16 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, setStudiedKan
      if (!studied) {
        mainKanji.studied = true;
        setStudiedKanji(prev => [...prev, mainKanji]);
+       if(setPendingKanji) {
+        const pend =  savedKanji.filter(k => k.studied === false)
+        setPendingKanji(pend)
+       }
      } else {
        mainKanji.studied = false;
        setStudiedKanji(prev => prev.filter(k => k._id !== mainKanji._id));
+       if(setPendingKanji) {
+        setPendingKanji(savedKanji.filter(k => k.studied === false))
+       }
      }
    }
  }
