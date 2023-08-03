@@ -1,0 +1,44 @@
+.chart-container {
+  width: 20%;
+  /* border: 1px solid black */
+}
+
+.chart-header {
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 2.2rem;
+  text-align: center;
+  margin: 20px 0 5px 0;
+}
+
+.key-container {
+  width: 100%;
+  height: 20%;
+  border: 1px solid black;
+  background-color: #6f6f823c;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.key-set1 {
+  width: 20px;
+  height:20px;
+  background-color: rgba(235, 177, 210, 0.771);
+  margin: 10px;
+}
+
+.key-set2 {
+  width: 20px;
+  height:20px;
+  background-color: rgba(156, 156, 172, 0.771);
+  margin: 10px;
+}
+
+.key-box {
+  display: flex;
+  align-items: center;
+}
+
+.key-label {
+  margin: 0;
+  font-size: 1.3rem;
+}
