@@ -21,6 +21,7 @@
   background-color:  #ebb1d2;
   font-family: 'Noto Sans SC', sans-serif;
   font-size: 1.3rem;
+  text-align: center;
 }
 
 .start-btn:hover {
@@ -30,6 +31,7 @@
 
 .quiz-panda {
   width: 40%;
+  margin-top: 50px;
 }
 
 .error-box {
@@ -42,3 +44,9 @@
   display: flex;
   justify-content: space-around;
 }
+
+@media (max-width:500px) {
+  .start-btn {
+    width: 40%;
+  }
+} 

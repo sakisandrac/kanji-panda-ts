@@ -83,7 +83,7 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
       <article className='card-container'>
         {currentCard.length > 0 && !isFinished && renderCards()}
         {showButtons && !isFinished &&
-          <div className='info-saved-box'>
+          <div className='quiz-saved-box'>
             <p className='card-text'>I got this kanji:</p>
             <div className='btn-container'>
             <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
