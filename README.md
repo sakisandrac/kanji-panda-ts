@@ -15,10 +15,11 @@ At the time of this project, I am a student at Turing School of Software Enginee
 The biggest challenge about this project was the "my saved kanji" page. This page allows users to filter through their saved kanji by viewing all saved, kanji yet to be studied, and kanji already learned. Having the components re-render and stay in sync with each other was a challenge as there were serveral different states to keep track of.
 
 ## Project Preview
-![Jul-30-2023 20-02-08](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/c530f286-6153-4d1e-b38c-8ecdc6f5dfda)
-![Jul-30-2023 20-01-59](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/f7bc1e01-80be-42bb-ac35-ac784dd268c9)
 ![Jul-30-2023 20-01-18](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/9d06f958-4c6e-4b42-a3a4-ad01dda800fb)
-
+![Jul-30-2023 20-01-59](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/f7bc1e01-80be-42bb-ac35-ac784dd268c9)
+![Jul-30-2023 20-02-08](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/c530f286-6153-4d1e-b38c-8ecdc6f5dfda)
+![Aug-02-2023 23-40-24](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/17b33022-ca28-46cc-b678-be078fdaab9d)
+![Aug-02-2023 23-41-01](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/57201746-ad70-4efc-9750-eea6124322e5)
 
 ## Set up
 1. Fork or clone down this respository. 
