@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RandomKanji from '../RandomKanji/RandomKanji';
 import './SavedKanji.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
@@ -9,13 +9,13 @@ import Charts from '../Charts/Charts';
 interface SavedKanjiProps {
   studiedKanji: KanjiData2[],
   setStudiedKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
-  saveKanji:  (kanji: KanjiData) => void,
+  saveKanji: (kanji: KanjiData) => void,
   savedKanji: KanjiData2[],
   pendingKanji: KanjiData2[],
   setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>
 }
 
-const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, studiedKanji, setStudiedKanji, saveKanji, savedKanji}) => {
+const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
 
   const [viewMode, setViewMode] = useState<string>("saved");
 
@@ -25,11 +25,11 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, s
     if (view === "saved") {
       kanjiSet = savedKanji;
     };
-  
+
     if (view === 'pending') {
       kanjiSet = pendingKanji;
     };
-  
+
     if (view === 'learned') {
       kanjiSet = studiedKanji;
     };
@@ -44,10 +44,9 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, s
 
     return displayKanji(view).map(k => {
       return (
-        <RandomKanji key={k._id} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} savedKanji={savedKanji} />
+        <RandomKanji key={k._id} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} savedKanji={savedKanji} />
       )
-    }
-    )
+    })
   }
 
   const setView = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -55,16 +54,20 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, s
     setPendingKanji(savedKanji.filter(k => k.studied === false));
   }
 
+  const renderChart = () => {
+    return (<Charts labels={['Studied', 'Not Studied Yet']} title={'Kanji Studied'} variables={[studiedKanji, pendingKanji]} />)
+  }
+
   return (
     <div className='saved-page'>
       <main className='dashboard'>
-        <h1 className='header'>My Saved Kanji</h1>
+        <h1 className='header'>My Kanji Learning</h1>
         <div className='saved-chart-container'>
           <article className='info-saved-box'>
             <p className='info-text'>Study your saved Kanji and check them off when you're done learning!</p>
             <Link className='quiz-link' to='/quiz'><button className='quiz-btn'>When you're ready, try our QUIZ</button></Link>
           </article>
-          {savedKanji.length > 0 && <Charts labels={['Studied', 'Not Studied Yet']} title={'Kanji Studied'} variables={[studiedKanji, savedKanji]} />}
+          {savedKanji.length > 0 && renderChart()}
         </div>
         <div className='select-container'>
           <label className='select-label' htmlFor='view-select'>Currently Viewing:</label>
@@ -75,7 +78,7 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({pendingKanji, setPendingKanji, s
           </select>
         </div>
         <div className='saved-container'>
-          {savedKanji.length > 0 ? renderSaved(viewMode) : <ErrorMsg message="You have not saved any kanji yet!"/>}
+          {savedKanji.length > 0 ? renderSaved(viewMode) : <ErrorMsg message="You have not saved any kanji yet!" />}
         </div>
       </main>
     </div>
