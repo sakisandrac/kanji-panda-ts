@@ -3,7 +3,14 @@ Unleash the power of kanji with this captivating study companion! Upon page load
 Try this app <a href="https://kanji-panda-ts.vercel.app/">here</a>!
 
 ## Technologies Used
-React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Cypress
+React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Chart.JS
+
+## Features: 
+- Users can browse random kanji from homepage, or search for kanji by english meaning or by the character itself
+- Users can save kanji they want to study, and mark them as studied when they have learned the character
+- Take a quiz based on all saved kanji or just kanji you havent learned yet
+- Track the progress of kanji learned vs kanji you're still learning
+- Saved kanji and progress will persist on page load due to local storage 
 
 ## Contributors:
 <a href="https://github.com/sakisandrac">Saki Chatphatthanasiri</a><br>
