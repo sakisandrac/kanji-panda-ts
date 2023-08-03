@@ -21,18 +21,12 @@ const Charts: React.FC<ChartsProps> = ({labels, title, variables}) => {
         label: title,
         data: [variables[0].length, variables[1].length],
         backgroundColor: [
-          // 'rgba(50, 38, 67, 0.771)',
           'rgba(235, 177, 210, 0.771)',
-          // 'rgba(250, 139, 202, 0.771)',
           'rgba(156, 156, 172, 0.771)',
-          // 'rgba(153, 148, 172, 0.771)',
         ],
         borderColor: [
-          // 'rgba(50, 38, 67, 1)',
           'rgba(235, 177, 210, 1)',
-          // 'rgba(250, 139, 202, 1)',
           'rgba(156, 156, 172, 1)',
-          // 'rgba(153, 148, 172, 1)',
         ],
         borderWidth: 2,
       },
