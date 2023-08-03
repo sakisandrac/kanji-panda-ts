@@ -37,28 +37,27 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
       return false;
     }
   }
-
-  useEffect(() => {
-    console.log('correct', correctCards)
-    console.log('incorrect', incorrectCards)
-  },[correctCards, incorrectCards])
   
   const startQuiz = () => {
     setQuizMode(true);
   }
 
   const allSavedMode = () => {
-    console.log(savedKanji)
     setQuizSet(savedKanji);
     setStart(true)
   }
 
   const onlyPendingMode = () => {
-    setPendingKanji(savedKanji.filter(k => k.studied === false))
     console.log(pendingKanji)
     setQuizSet(pendingKanji)
     setStart(true)
   }
+
+  useEffect(() => {
+    setCorrectCards([])
+    setIncorrectCards([])
+    setPendingKanji(savedKanji.filter(k => k.studied === false))
+  },[start])
 
   return (
     <div className='main-container'>
@@ -78,7 +77,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
           </div>
         </section>}
         {!quizMode && <img className='quiz-panda' src={quizPanda} />}
-        {quizSet.length > 0 && <QuizCard sortCards={sortCards} quizSet={quizSet}/>}
+        {quizSet.length > 0 && start && <QuizCard correctCards={correctCards} setStart={setStart} sortCards={sortCards} quizSet={quizSet}/>}
       </main>
     </div>
   )

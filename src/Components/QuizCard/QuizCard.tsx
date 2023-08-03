@@ -2,22 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { KanjiData2 } from '../../types';
 import { getRandNum } from '../../utils';
 import './QuizCard.css';
+import happyPanda from '../../images/panda-happy.png'
 
 interface QuizCardProps {
   quizSet: KanjiData2[],
+  correctCards: KanjiData2[],
   sortCards: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, currentCard: KanjiData2) => void,
+  setStart: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
+const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, setStart}) => {
 
   const [remainingCards, setRemainingCards] = useState<KanjiData2[]>(quizSet);
   const [finishedCards, setFinishedCards] = useState<KanjiData2[]>([]);
   const [currentCard, setCurrentCard] = useState<KanjiData2[]>([]);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(false);
+  const [finalScore, setFinalScore] = useState<string>("");
 
   const initialSet = () => {
     if (remainingCards.length > 0) {
+      console.log('initalset', remainingCards)
       const num = getRandNum(remainingCards.length)
       setRemainingCards(prev => prev.filter(k => k._id !== remainingCards[num]._id));
       setFinishedCards(prev => [...prev, remainingCards[num]]);
@@ -31,17 +36,16 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
       sortCards(e, currentCard[0]);
       setShowButtons(false)
     } else {
+      sortCards(e, currentCard[0]);
       setIsFinished(true);
     }
   }
 
   useEffect(()=> {
     initialSet()
-    console.log('here')
   }, [])
 
   const revealAnswer = () => {
-    console.log('answer')
     setShowButtons(true)
   }
 
@@ -58,28 +62,41 @@ const QuizCard: React.FC<QuizCardProps>= ({quizSet, sortCards}) => {
   }
 
   useEffect(() => {
-    console.log('r', remainingCards)
-    console.log('f', finishedCards)
-  }, [remainingCards, finishedCards])
+    console.log('remaining', remainingCards)
+    console.log('finished', finishedCards)
+    setFinalScore(calculateScore())
+    console.log(correctCards)
+  }, [isFinished])
+
+  const restartQuiz = () => {
+    setStart(false)
+  }
+
+  const calculateScore = () => {
+    const total = quizSet.length
+    const correct = correctCards.length
+    return `You got ${correct}/${total} correct!`
+  }
 
   return (
     <div className='card-page info-cards-box'>
       <article className='card-container'>
-        {currentCard.length > 0 && renderCards()}
+        {currentCard.length > 0 && !isFinished && renderCards()}
         {showButtons && !isFinished &&
           <div className='info-saved-box'>
             <p className='card-text'>I got this kanji:</p>
             <div className='btn-container'>
+            <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
               <button value='correct' onClick={(e) => { getNextCard(e) }} className='save-btn'>Correct</button>
-              <button value='incorrect' onClick={(e) => { getNextCard(e) }} className='save-btn'>Incorrect</button>
             </div>
         </div>}
         {isFinished && 
         <div className='card-container'>
           <p className='header'>You've Finished This Set!</p>
-          <button className='again-btn'>Try Again?</button>
+          <div className='check-container'><p className='score-text'>{finalScore}</p></div>
+          <img className='happy-panda' src={happyPanda} alt="Happy panda icon" />
+          <button className='again-btn' onClick={restartQuiz}>Try Again?</button>
         </div>}
-
       </article>
     </div>
   )
