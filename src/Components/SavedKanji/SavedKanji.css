@@ -18,6 +18,7 @@
   width: 80%;
   justify-content: space-around;
   align-items: center;
+  margin-bottom: 40px;
 }
 
 .header {
@@ -97,3 +98,4 @@ input:focus {
 .info-saved-box {
     height: 30%;
  }
+}

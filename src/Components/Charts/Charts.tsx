@@ -1,10 +1,10 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import {Chart, ArcElement} from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { KanjiData2 } from '../../types';
 import './Charts.css';
 
-Chart.register(ArcElement);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 interface ChartsProps {
   labels: string[],
@@ -17,7 +17,7 @@ const Charts: React.FC<ChartsProps> = ({labels, title, variables}) => {
 //title = 'Kanji Studied'
 //var1 = studied var2= not studied
 //var1 = correct var2= incorrect
-console.log(variables)
+console.log(labels, title, variables)
   const data = {
     labels: labels,
     datasets: [
@@ -64,7 +64,7 @@ console.log(variables)
         <div className='chart-container'>
           <p className='chart-header'>My Progress</p>
           <Doughnut data={data} />
-          {chartKey()}
+          {/* {chartKey()} */}
         </div>
       // </div>
     // </div>

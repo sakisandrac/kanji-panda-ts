@@ -9,7 +9,6 @@ import './App.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2, ErrorType } from '../../types';
 import Quiz from '../Quiz/Quiz';
-import Charts from '../Charts/Charts';
 
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
