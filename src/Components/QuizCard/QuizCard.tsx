@@ -18,9 +18,11 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
   const [currentCard, setCurrentCard] = useState<KanjiData2[]>([]);
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const [showButtons, setShowButtons] = useState<boolean>(false);
+  const [finalScore, setFinalScore] = useState<string>("");
 
   const initialSet = () => {
     if (remainingCards.length > 0) {
+      console.log('initalset', remainingCards)
       const num = getRandNum(remainingCards.length)
       setRemainingCards(prev => prev.filter(k => k._id !== remainingCards[num]._id));
       setFinishedCards(prev => [...prev, remainingCards[num]]);
@@ -34,6 +36,7 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
       sortCards(e, currentCard[0]);
       setShowButtons(false)
     } else {
+      sortCards(e, currentCard[0]);
       setIsFinished(true);
     }
   }
@@ -59,9 +62,11 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
   }
 
   useEffect(() => {
-    console.log('r', remainingCards)
-    console.log('f', finishedCards)
-  }, [remainingCards, finishedCards])
+    console.log('remaining', remainingCards)
+    console.log('finished', finishedCards)
+    setFinalScore(calculateScore())
+    console.log(correctCards)
+  }, [isFinished])
 
   const restartQuiz = () => {
     setStart(false)
@@ -88,7 +93,7 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
         {isFinished && 
         <div className='card-container'>
           <p className='header'>You've Finished This Set!</p>
-          <div className='check-container'><p className='score-text'>{calculateScore()}</p></div>
+          <div className='check-container'><p className='score-text'>{finalScore}</p></div>
           <img className='happy-panda' src={happyPanda} alt="Happy panda icon" />
           <button className='again-btn' onClick={restartQuiz}>Try Again?</button>
         </div>}

@@ -37,24 +37,17 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
       return false;
     }
   }
-
-  useEffect(() => {
-    console.log('correct', correctCards)
-    console.log('incorrect', incorrectCards)
-  },[correctCards, incorrectCards])
   
   const startQuiz = () => {
     setQuizMode(true);
   }
 
   const allSavedMode = () => {
-    console.log(savedKanji)
     setQuizSet(savedKanji);
     setStart(true)
   }
 
   const onlyPendingMode = () => {
-    setPendingKanji(savedKanji.filter(k => k.studied === false))
     console.log(pendingKanji)
     setQuizSet(pendingKanji)
     setStart(true)
@@ -63,6 +56,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
   useEffect(() => {
     setCorrectCards([])
     setIncorrectCards([])
+    setPendingKanji(savedKanji.filter(k => k.studied === false))
   },[start])
 
   return (
