@@ -3,7 +3,7 @@ Unleash the power of kanji with this captivating study companion! Upon page load
 Try this app <a href="https://kanji-panda-ts.vercel.app/">here</a>!
 
 ## Technologies Used
-React, PropTypes, React router v6, create-react-app, CSS, HTML, JavaScript, Cypress
+React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Cypress
 
 ## Contributors:
 <a href="https://github.com/sakisandrac">Saki Chatphatthanasiri</a><br>
