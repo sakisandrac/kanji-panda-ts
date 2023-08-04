@@ -5,6 +5,7 @@ import RandomKanji from '../RandomKanji/RandomKanji';
 import './SearchPage.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2, ErrorType } from '../../types';
+import searchPanda from '../../images/search-panda.png';
 
 interface SearchPageProps {
   saveKanji:  (kanji: KanjiData) => void,
@@ -109,13 +110,14 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
         </form>
         <div className='search-results-container'>
           <section className='search-results'>
-            {error.error && <ErrorMsg message={`${error.message}`}/>}
+            {/* {error.error && <ErrorMsg message={`${error.message}`}/>} */}
             {isSubmitted ? 
               searchResult.length > 0? 
                 renderResults() : <ErrorMsg message={"loading..."}/>
               : <ErrorMsg message={error.message}/>
             }
           </section>
+          {!isSubmitted && <img className='quiz-panda' src={searchPanda} alt="panda search icon"/> }
         </div>
       </div>
     </div>
