@@ -3,7 +3,8 @@ import SavedKanji from '../SavedKanji/SavedKanji';
 import Nav from '../Nav/Nav';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { singleKanjiInfo } from '../../apiCalls';
+import { getKanji, getSingleKanji } from '../../apiCalls';
+import { cleanUpData, getRandNum } from '../../utils';
 import SearchPage from '../SearchPage/SearchPage';
 import './App.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
@@ -16,7 +17,8 @@ const App: React.FC = () => {
   const [savedKanji, setSavedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("savedKanji")!) || []);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("studiedKanji")!) || []);
-  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || [])
+  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || []);
+  const [getNewSet, setGetNewSet] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
@@ -24,31 +26,33 @@ const App: React.FC = () => {
     localStorage.setItem("pendingKanji", JSON.stringify(pendingKanji))
 }, [savedKanji, pendingKanji, studiedKanji])
 
-  useEffect(()=> {
-    if (kanjiSet.length < 5) {
-      singleKanjiInfo().then(data => {
-        setKanjiSet(prev => [...prev, data]);
-        setMainKanji(kanjiSet[0]);
-        setError({error: false, message: ""});
-      })
-      .catch(err => {
-        setError({error: true, message: `${err}`});
-      })
-    }
-
-    setFiveKanji();
-
-  }, [kanjiSet])
-
-  const setFiveKanji = () => {
-    if(kanjiSet.length === 6) {
-      setKanjiSet(prev => {
-        const copy = [...prev]
-        prev.splice(5, 1)
-        return copy
-      })
-    }
+const getKanjiSet = async () => {
+  const kData = await getKanji()
+  const set = []
+  for (let i = 0; i < 5; i++) {
+    set.push(kData[getRandNum(kData.length)].kanji.character);
   }
+  return set
+}
+
+const getKanjiDetails = async (k: any) => {
+  const data = await getSingleKanji('kanji', k);
+  setKanjiSet(prev => [...prev, cleanUpData(data)]);
+  setMainKanji(data);
+}
+
+useEffect(() => {
+
+  getKanjiSet().then(set => {
+    set.forEach(k => {
+      try {
+        getKanjiDetails(k)
+      } catch (err) {
+        setError({ error: true, message: `${err}` });
+      }
+    })
+  }).catch(err => setError({ error: true, message: `${err}` }))
+}, [getNewSet])
 
   const changeMainKanji = (kanji: KanjiData) => {
     setMainKanji(kanji);
@@ -86,7 +90,8 @@ const App: React.FC = () => {
           savedKanji={savedKanji} 
           saveKanji={saveKanji} 
           kanjiSet={kanjiSet} 
-          mainKanji={mainKanji} 
+          mainKanji={mainKanji}
+          setGetNewSet={setGetNewSet}
           changeMainKanji={changeMainKanji}/>} />
       <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
       <Route path="/search" element={<SearchPage saveKanji={saveKanji} savedKanji={savedKanji}/>}/>

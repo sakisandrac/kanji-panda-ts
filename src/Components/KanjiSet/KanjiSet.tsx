@@ -6,9 +6,10 @@ interface KanjiSetProps {
   kanjiSet: KanjiData[],
   changeMainKanji: (kanji: KanjiData) => void,
   setKanjiSet: React.Dispatch<React.SetStateAction<KanjiData[]>>,
+  setGetNewSet: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const KanjiSet: React.FC<KanjiSetProps> = ({kanjiSet, changeMainKanji, setKanjiSet}) => {
+const KanjiSet: React.FC<KanjiSetProps> = ({setGetNewSet, kanjiSet, changeMainKanji, setKanjiSet}) => {
 
   const renderKanjiSet = () => {
     return kanjiSet?.map(kanji => {
@@ -23,6 +24,7 @@ const KanjiSet: React.FC<KanjiSetProps> = ({kanjiSet, changeMainKanji, setKanjiS
 
   const handleClick = () => {
     setKanjiSet([]);
+    setGetNewSet (prev=> !prev);
   }
 
   return (

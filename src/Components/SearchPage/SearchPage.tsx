@@ -116,7 +116,7 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
               : <ErrorMsg message={error.message}/>
             }
           </section>
-          {!isSubmitted && <img className='quiz-panda' src={searchPanda} alt="panda search icon"/> }
+          {!isSubmitted && <img className='search-panda' src={searchPanda} alt="panda search icon"/> }
         </div>
       </div>
     </div>
