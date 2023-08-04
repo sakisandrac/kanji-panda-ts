@@ -76,7 +76,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
             <button onClick={onlyPendingMode} className='save-btn'>KANJI NOT LEARNED YET</button>
           </div>
         </section>}
-        {!quizMode && <img className='quiz-panda' src={quizPanda} />}
+        {!quizMode && <img className='quiz-panda' alt='quiz panda icon' src={quizPanda} />}
         {quizSet.length > 0 && start && <QuizCard correctCards={correctCards} setStart={setStart} sortCards={sortCards} quizSet={quizSet}/>}
       </main>
     </div>

@@ -30,6 +30,33 @@
   width: 40%;
 }
 
+.about-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+dialog {
+  width: 40%;
+  height: 60%;
+  border-radius: 20px;
+  /* border: 1px solid black; */
+  border: none;
+  background-color: #9c9cac;
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 25%);
+  text-align: center;
+}
+
+.linked {
+  color: #fa8bca;
+  font-size: 1.3rem;
+}
+
+.small-panda {
+  height: 50px;
+  margin-right: 20px;
+}
+
 @media (max-width: 500px) {
   .info-home-box {
     height: 18%;
