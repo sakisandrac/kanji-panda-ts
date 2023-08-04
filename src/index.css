@@ -1,7 +1,19 @@
-a {
+html {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+}
+
+a, button {
   color: black;
 }
 
 a:visited {
+  color: black;
+}
+
+button:visited {
   color: black;
 }

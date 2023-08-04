@@ -17,7 +17,7 @@ const Nav:React.FC =() => {
       </div>
       <div className="nav-link-container">
         <NavLink className="nav-link text" to="/" aria-label="link to homepage">Home</NavLink>
-        <NavLink className="nav-link text" to="/saved" aria-label="link to saved kanji page">My Saved Kanji</NavLink>
+        <NavLink className="nav-link text" to="/saved" aria-label="link to saved kanji page">My Learning</NavLink>
         <NavLink className="nav-link text" to="/search" aria-label="link to search page">Search</NavLink>
         <Link className="nav-link icon" to="/" aria-label="link to homepage"><img className='nav-icon' src={home} alt='home icon'/></Link>
         <Link className="nav-link icon" to="/saved" aria-label="link to saved kanji page"><img className='nav-icon' src={saved} alt='saved page icon'/></Link>

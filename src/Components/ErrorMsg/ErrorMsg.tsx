@@ -16,7 +16,7 @@ const ErrorMsg: React.FC<ErrorMsgProps> = ({message}) => {
         </main>
       )
     } else {
-      return <h1 className='error-msg'>{message}</h1>
+      return <p className='error-msg'>{message}</p>
     }
   }
 
