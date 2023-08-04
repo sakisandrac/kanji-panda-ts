@@ -91,7 +91,6 @@ const App: React.FC = () => {
       <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
       <Route path="/search" element={<SearchPage saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
       <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />}/>
-      {/* <Route path="/chart" element={}/> */}
       <Route path="*" element={<ErrorMsg message={"404"} />}/>
     </Routes>
   </>

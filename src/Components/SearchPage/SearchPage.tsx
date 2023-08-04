@@ -26,7 +26,7 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
     if(searchTerm) {
       setSearchResult([]);
       setError({error: false, message: ""})
-      getSingleKanji(searchType, searchTerm)
+      getSingleKanji(searchType, searchTerm.toLowerCase())
       .then(data => {
         setError({error: false, message:""})
         const cleanData = cleanUpData(data);
@@ -105,12 +105,11 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
             <option value='kanji'>Kanji Character</option>
           </select>
           <label className='hidden' htmlFor='searchText'>Search</label>
-          <input id='searchText' className='search-text' name='input' type='text' value={searchTerm} onChange={(e) => { setSearch(e) }} placeholder='enter kanji' />
+          <input id='searchText' className='search-text' name='input' type='text' value={searchTerm} onChange={(e) => { setSearch(e) }} placeholder='enter search' />
           <button className='save-btn search-btn' onClick={(e) => { submitSearch(e) }}>search</button>
         </form>
         <div className='search-results-container'>
           <section className='search-results'>
-            {/* {error.error && <ErrorMsg message={`${error.message}`}/>} */}
             {isSubmitted ? 
               searchResult.length > 0? 
                 renderResults() : <ErrorMsg message={"loading..."}/>
