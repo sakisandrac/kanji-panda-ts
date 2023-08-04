@@ -16,10 +16,11 @@ interface HomepageProps {
   changeMainKanji: (kanji: KanjiData) => void,
   saveKanji: (kanji: KanjiData) => void,
   savedKanji: KanjiData2[],
-  setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>
+  setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
+  setGetNewSet: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Homepage: React.FC<HomepageProps> = ({ setPendingKanji, studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji }) => {
+const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, setPendingKanji, studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji }) => {
 
   const openModal = () => {
     const modal: HTMLDialogElement = document.querySelector('#aboutModal') as HTMLDialogElement
@@ -51,7 +52,7 @@ const Homepage: React.FC<HomepageProps> = ({ setPendingKanji, studiedKanji, setS
         </dialog>
         {error.error && <ErrorMsg message={error.message} />}
         <RandomKanji setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} mainKanji={mainKanji} savedKanji={savedKanji} />
-        <KanjiSet setKanjiSet={setKanjiSet} kanjiSet={kanjiSet} changeMainKanji={changeMainKanji} />
+        <KanjiSet setGetNewSet={setGetNewSet} setKanjiSet={setKanjiSet} kanjiSet={kanjiSet} changeMainKanji={changeMainKanji} />
       </main>
     </div>
   )

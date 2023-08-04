@@ -1,5 +1,3 @@
-import { getRandNum, cleanUpData } from "./utils";
-
 const getKanji = async () => {
   const res = await fetch(`https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/`, {
     method: 'GET',
@@ -36,17 +34,4 @@ const getSingleKanji = async (type: string, char: string) => {
   return data;
 }
 
-const singleKanjiInfo = async () => {
-  try {
-    const data = await getKanji();
-    const randIndex = getRandNum(data.length);
-    const kanji = data[randIndex].kanji.character;
-    const kanjiData = await getSingleKanji('kanji', kanji);
-    return cleanUpData(kanjiData);
-  } catch (error) {
-    console.log(error);
-    throw new Error(`${error} - Please Try Again`);
-  }
-}
-
-export { singleKanjiInfo, getSingleKanji }
+export { getSingleKanji, getKanji }
