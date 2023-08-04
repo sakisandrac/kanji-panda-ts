@@ -6,12 +6,14 @@ Try this app <a href="https://kanji-panda-ts.vercel.app/">here</a>!
 React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Chart.JS
 
 ## Features: 
-- Users can browse random kanji from homepage, or search for kanji by english meaning or by the character itself
+- Users can browse random kanji from the homepage, or search for kanji by English meaning or by the character itself
 - Users can save kanji they want to study, and mark them as studied when they have learned the character
-- Take a quiz based on all saved kanji or just kanji you havent learned yet
+- Take a quiz based on all saved kanji or just kanji you haven't learned yet
 - Track the progress of kanji learned vs kanji you're still learning
-- Saved kanji and progress will persist on page load due to local storage 
-
+- Saved kanji and progress will persist on page load due to local storage
+- Design is responsive across all mobile devices
+- 100% Accessible on Lighthouse
+  
 ## Contributors:
 <a href="https://github.com/sakisandrac">Saki Chatphatthanasiri</a><br>
 
@@ -22,11 +24,10 @@ At the time of this project, I am a student at Turing School of Software Enginee
 The biggest challenge about this project was the "my saved kanji" page. This page allows users to filter through their saved kanji by viewing all saved, kanji yet to be studied, and kanji already learned. Having the components re-render and stay in sync with each other was a challenge as there were serveral different states to keep track of.
 
 ## Project Preview
-![Jul-30-2023 20-01-18](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/9d06f958-4c6e-4b42-a3a4-ad01dda800fb)
-![Jul-30-2023 20-01-59](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/f7bc1e01-80be-42bb-ac35-ac784dd268c9)
-![Jul-30-2023 20-02-08](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/c530f286-6153-4d1e-b38c-8ecdc6f5dfda)
-![Aug-02-2023 23-40-24](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/17b33022-ca28-46cc-b678-be078fdaab9d)
-![Aug-02-2023 23-41-01](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/57201746-ad70-4efc-9750-eea6124322e5)
+![kp1](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/17ecb77b-3e45-4a82-9440-0cf09b5872a0)
+![kp2](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/ee04ac93-f58f-4361-ac28-14186e29d6a6)
+![kp3](https://github.com/sakisandrac/kanji-panda-ts/assets/118419729/2397d06d-2f7b-45c6-9651-955808d42436)
+
 
 ## Set up
 1. Fork or clone down this respository. 
