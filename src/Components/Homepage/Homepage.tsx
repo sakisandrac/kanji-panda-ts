@@ -45,8 +45,12 @@ const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, setPendingKanji, stud
           <div className='modal-container'>
             <p className='chart-header'>About This Application</p>
             <p className='info-text'>
-              Kanji Panda is the ultimate study companion for Japanese learners. Designed with a focus on enhancing your Japanese learning journey, Kanji Panda empowers users to delve into the fascinating world of kanji characters effortlessly. Whether you're a beginner or an advanced learner, this app offers a seamless experience to explore, study, and master kanji. With the ability to load random kanji or conduct targeted searches, you can effortlessly build a personalized kanji collection, saving them for future reference. As you progress, mark off each kanji you've studied, and easily track your learning achievements. The app also provides valuable insights, showcasing the number of kanji you've mastered, as well as those that still await your exploration. To further solidify your knowledge, an interactive quiz feature challenges you to test your understanding of the saved kanji. Embrace the Kanji Panda experience today and happy learning! 🐼</p>
-              <p className='info-text'>Created by <a href="https://www.linkedin.com/in/saki-c-a7306b259/"><span className='linked'>Saki C</span></a></p>
+              Kanji Panda is the ultimate study companion for Japanese learners. Designed with a focus on enhancing your Japanese learning journey, Kanji Panda empowers users to delve into the fascinating world of kanji characters effortlessly.
+              <br /><br />
+              Whether you're a beginner or an advanced learner, this app offers a seamless experience to explore, study, and master kanji. With the ability to load random kanji or conduct targeted searches, you can effortlessly build a personalized kanji collection, saving them for future reference. As you progress, mark off each kanji you've studied, and easily track your learning achievements. The app also provides valuable insights, showcasing the number of kanji you've mastered, as well as those that still await your exploration. 
+              <br/><br/>
+              To further solidify your knowledge, an interactive quiz feature challenges you to test your understanding of the saved kanji. Embrace the Kanji Panda experience today and happy learning! 🐼</p>
+            <p className='info-text'>Created by <a href="https://www.linkedin.com/in/saki-c-a7306b259/"><span className='linked'>Saki C</span></a></p>
               <button className='save-btn' onClick={closeModal}>Close</button>
           </div>
         </dialog>
