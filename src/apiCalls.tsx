@@ -8,7 +8,7 @@ const getKanji = async () => {
   });
 
   if(!res.ok) {
-    console.log('this i sthe error', res.statusText);
+    console.log('this is　the error', res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);
   };
 

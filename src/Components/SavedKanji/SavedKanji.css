@@ -23,14 +23,14 @@
 
 .header {
   font-family: 'Bebas Neue', sans-serif; 
-  font-size: 3.3rem;
+  font-size: 3rem;
   margin: 20px 0 0 0;
   text-align: center;
 }
 
 .info-text {
-  font-size: 1.2rem;
-  margin: 0 0 10px 0;
+  font-size: .8rem;
+  /* margin: 0 0 10px 0; */
 }
 
 .info-saved-box {

@@ -1,9 +1,8 @@
 .main-kanji {
   box-shadow: 0 3px 6px 0 rgb(0 0 0 / 45%);
   border-radius: 20px;
-  /* background-color: #9c9cac; */
   background-color: rgb(255, 251, 251);
-  width: 400px;
+  width: 300px;
   margin: 15px;
   display: flex;
   flex-direction: column;
@@ -12,7 +11,7 @@
 }
 
 .main-char {
-  font-size: 9rem;
+  font-size: 7rem;
   margin: 0;
 }
 
@@ -21,10 +20,14 @@
   padding: 0 10px;
 }
 
+p {
+  font-size: .8rem;
+}
+
 .save-btn {
   border: none;
   border-radius: 10px;
-  padding: 10px;
+  padding: 7px;
   width: 120px;
   margin: 5px;
   background-color:  #ebb1d2;
