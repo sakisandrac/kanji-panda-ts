@@ -9,13 +9,14 @@ import Charts from '../Charts/Charts';
 interface SavedKanjiProps {
   studiedKanji: KanjiData2[],
   setStudiedKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
-  saveKanji: (kanji: KanjiData) => void,
+  saveKanji: (user: string, kanji: KanjiData) => Promise<void>,
   savedKanji: KanjiData2[],
   pendingKanji: KanjiData2[],
   setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>
+  user: string
 }
 
-const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
+const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, user, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
 
   const [viewMode, setViewMode] = useState<string>("saved");
 
@@ -44,7 +45,7 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, 
 
     return displayKanji(view).map(k => {
       return (
-        <RandomKanji key={k._id} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} savedKanji={savedKanji} />
+        <RandomKanji key={k._id} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} user={user} savedKanji={savedKanji} />
       )
     })
   }

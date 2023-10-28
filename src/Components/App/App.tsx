@@ -3,7 +3,7 @@ import SavedKanji from '../SavedKanji/SavedKanji';
 import Nav from '../Nav/Nav';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getKanji, getSingleKanji } from '../../apiCalls';
+import { getKanji, getSingleKanji, saveKanji } from '../../apiCalls';
 import { cleanUpData, getRandNum } from '../../utils';
 import SearchPage from '../SearchPage/SearchPage';
 import './App.css';
@@ -19,6 +19,7 @@ const App: React.FC = () => {
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("studiedKanji")!) || []);
   const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || []);
   const [getNewSet, setGetNewSet] = useState<boolean>(false);
+  const [user, setUser] = useState<string>("user2");
 
   useEffect(() => {
     localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
@@ -39,6 +40,7 @@ const getKanjiDetails = async (k: any) => {
   const data = await getSingleKanji('kanji', k);
   setKanjiSet(prev => [...prev, cleanUpData(data)]);
   setMainKanji(data);
+  console.log(data)
 }
 
 useEffect(() => {
@@ -58,21 +60,21 @@ useEffect(() => {
     setMainKanji(kanji);
   }
   
-  const saveKanji = (kanji: KanjiData) => {
-    const isSaved = savedKanji.find(saved => {
-      return saved._id === kanji._id;
-    })
+  // const saveKanji = (kanji: KanjiData) => {
+  //   const isSaved = savedKanji.find(saved => {
+  //     return saved._id === kanji._id;
+  //   })
 
-    const kanjiData = {...kanji, studied: false}
-    if (!isSaved) {
-      setSavedKanji(prev => [...prev, kanjiData]);
-      setPendingKanji(prev => [...prev, kanjiData]);
-    } else {
-      const filteredKanji = savedKanji.filter(k => k._id !== kanji._id);
-      setSavedKanji(filteredKanji);
-      setPendingKanji(filteredKanji);
-    }
-  }
+  //   const kanjiData = {...kanji, studied: false}
+  //   if (!isSaved) {
+  //     setSavedKanji(prev => [...prev, kanjiData]);
+  //     setPendingKanji(prev => [...prev, kanjiData]);
+  //   } else {
+  //     const filteredKanji = savedKanji.filter(k => k._id !== kanji._id);
+  //     setSavedKanji(filteredKanji);
+  //     setPendingKanji(filteredKanji);
+  //   }
+  // }
 
   return (
     <>
@@ -88,13 +90,14 @@ useEffect(() => {
           error={error}
           setKanjiSet={setKanjiSet} 
           savedKanji={savedKanji} 
-          saveKanji={saveKanji} 
+          saveKanji={saveKanji}
+          user={user} 
           kanjiSet={kanjiSet} 
           mainKanji={mainKanji}
           setGetNewSet={setGetNewSet}
           changeMainKanji={changeMainKanji}/>} />
-      <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
-      <Route path="/search" element={<SearchPage saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
+      <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
+      <Route path="/search" element={<SearchPage user={user} saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
       <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />}/>
       <Route path="*" element={<ErrorMsg message={"404"} />}/>
     </Routes>

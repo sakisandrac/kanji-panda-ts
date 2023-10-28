@@ -8,11 +8,12 @@ import { KanjiData, KanjiData2, ErrorType } from '../../types';
 import searchPanda from '../../images/search-panda.png';
 
 interface SearchPageProps {
-  saveKanji:  (kanji: KanjiData) => void,
-  savedKanji: KanjiData2[]
+  saveKanji:  (user:string, kanji: KanjiData) => Promise<void>,
+  savedKanji: KanjiData2[],
+  user: string
 }
 
-const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
+const SearchPage: React.FC<SearchPageProps> = ({saveKanji, user, savedKanji}) => {
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [searchResult, setSearchResult] = useState<any[]>([]);
@@ -86,7 +87,7 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, savedKanji}) => {
     if(searchResult[0].error) {
       return <ErrorMsg message={"no results found"}/>
     } else {
-      return searchResult.map(kanji => <RandomKanji key={kanji._id} mainKanji={kanji}  saveKanji={saveKanji} savedKanji={savedKanji}/>)
+      return searchResult.map(kanji => <RandomKanji key={kanji._id} mainKanji={kanji}  saveKanji={saveKanji} user={user} savedKanji={savedKanji}/>)
     }
   }
 

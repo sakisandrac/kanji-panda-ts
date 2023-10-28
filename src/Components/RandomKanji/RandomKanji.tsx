@@ -9,12 +9,13 @@ interface RandomKanjiProps {
   studiedKanji?: KanjiData2[],
   setStudiedKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   mainKanji: KanjiData | KanjiData2 | undefined,
-  saveKanji:  (kanji: KanjiData) => void,
+  saveKanji:  ( user:string, kanji: KanjiData ) => Promise<void>,
   savedKanji: KanjiData2[],
   setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
+  user: string 
 }
 
-const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
+const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
 
  const studied = studiedKanji?.some(k => k._id === mainKanji?._id);
@@ -52,7 +53,7 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, setStudiedKan
           <p className='kanji-text'><b>Onyomi Pronounciation:</b> <i>{mainKanji?.onyomi}</i></p>
           <p className='mainKanji-text'><b>Kunyomi Pronounciation:</b> <i>{mainKanji?.kunyomi}</i></p>
         </div>
-        {mainKanji && <button className='save-btn' onClick={() => {saveKanji(mainKanji)}}>{savedKanji?.some(k => k._id === mainKanji._id) ? "Unsave" : "Save"} Kanji</button>}
+        {mainKanji && <button className='save-btn' onClick={() => {saveKanji(user, mainKanji)}}>{savedKanji?.some(k => k._id === mainKanji._id) ? "Unsave" : "Save"} Kanji</button>}
       </div>
     </section>
   )
