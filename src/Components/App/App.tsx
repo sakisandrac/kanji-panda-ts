@@ -3,18 +3,18 @@ import SavedKanji from '../SavedKanji/SavedKanji';
 import Nav from '../Nav/Nav';
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getKanji, getSingleKanji, saveKanji } from '../../apiCalls';
+import { getKanji, getSavedKanji, getSingleKanji, saveKanji } from '../../apiCalls';
 import { cleanUpData, getRandNum } from '../../utils';
 import SearchPage from '../SearchPage/SearchPage';
 import './App.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
-import { KanjiData, KanjiData2, ErrorType } from '../../types';
+import { KanjiData, KanjiData2, ErrorType, KanjiResponse } from '../../types';
 import Quiz from '../Quiz/Quiz';
 
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
   const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
-  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("savedKanji")!) || []);
+  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("studiedKanji")!) || []);
   const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || []);
@@ -22,10 +22,16 @@ const App: React.FC = () => {
   const [user, setUser] = useState<string>("user2");
 
   useEffect(() => {
-    localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
-    localStorage.setItem("studiedKanji", JSON.stringify(studiedKanji))
-    localStorage.setItem("pendingKanji", JSON.stringify(pendingKanji))
-}, [savedKanji, pendingKanji, studiedKanji])
+    // localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
+    // localStorage.setItem("studiedKanji", JSON.stringify(studiedKanji))
+    // localStorage.setItem("pendingKanji", JSON.stringify(pendingKanji))
+    getSavedKanji(user).then(data => {
+      setSavedKanji(data.data)
+      console.log(data.data)
+      setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied))
+      setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied))
+    })
+}, [])
 
 const getKanjiSet = async () => {
   const kData = await getKanji()
@@ -40,7 +46,6 @@ const getKanjiDetails = async (k: any) => {
   const data = await getSingleKanji('kanji', k);
   setKanjiSet(prev => [...prev, cleanUpData(data)]);
   setMainKanji(data);
-  console.log(data)
 }
 
 useEffect(() => {

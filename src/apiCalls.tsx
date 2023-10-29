@@ -37,8 +37,6 @@ const getSingleKanji = async (type: string, char: string) => {
 }
 
 const saveKanji = async (user: string, kanji: KanjiData) => {
-
-  // console.log('apicall', cleanKanji, user)
   const res = await fetch(`http://localhost:3003/api/v1/kanji/`, {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
@@ -48,9 +46,10 @@ const saveKanji = async (user: string, kanji: KanjiData) => {
       meaning: kanji.meaning,
       kunyomi: kanji.kunyomi,
       onyomi: kanji.onyomi,
-     user_id: user
+      user_id: user
     })
   })
+
 console.log(res)
   if(!res.ok) {
     console.log(res.statusText);
@@ -61,4 +60,20 @@ console.log(res)
   return data;
 }
 
-export { getSingleKanji, getKanji, saveKanji }
+const getSavedKanji = async (user: string) => {
+  const res = await fetch(`http://localhost:3003/api/v1/kanji/${user}`, {
+    method: 'GET',
+  })
+
+console.log(res)
+  if(!res.ok) {
+    console.log(res.statusText);
+    throw new Error(`${res.statusText} - Please Try Again`);
+  };
+
+  const data = await res.json();
+  return data;
+}
+
+
+export { getSingleKanji, getKanji, saveKanji, getSavedKanji }

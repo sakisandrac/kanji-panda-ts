@@ -19,3 +19,14 @@ export interface KanjiData2 {
   onyomi: string,
   studied: boolean
 }
+
+export interface KanjiResponse {
+  k_id: string,
+  k_utf: string,
+  meaning: string,
+  kunyomi: string,
+  onyomi: string,
+  studied: boolean,
+  updated_at: string,
+  created_at: string
+}
