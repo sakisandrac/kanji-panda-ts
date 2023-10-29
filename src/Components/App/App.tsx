@@ -16,15 +16,12 @@ const App: React.FC = () => {
   const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
   const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
-  const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("studiedKanji")!) || []);
-  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>(JSON.parse(localStorage.getItem("pendingKanji")!) || []);
+  const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
+  const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([]);
   const [getNewSet, setGetNewSet] = useState<boolean>(false);
   const [user, setUser] = useState<string>("user2");
 
   useEffect(() => {
-    // localStorage.setItem("savedKanji", JSON.stringify(savedKanji))
-    // localStorage.setItem("studiedKanji", JSON.stringify(studiedKanji))
-    // localStorage.setItem("pendingKanji", JSON.stringify(pendingKanji))
     getSavedKanji(user).then(data => {
       setSavedKanji(data.data)
       console.log(data.data)
@@ -64,22 +61,6 @@ useEffect(() => {
   const changeMainKanji = (kanji: KanjiData) => {
     setMainKanji(kanji);
   }
-  
-  // const saveKanji = (kanji: KanjiData) => {
-  //   const isSaved = savedKanji.find(saved => {
-  //     return saved._id === kanji._id;
-  //   })
-
-  //   const kanjiData = {...kanji, studied: false}
-  //   if (!isSaved) {
-  //     setSavedKanji(prev => [...prev, kanjiData]);
-  //     setPendingKanji(prev => [...prev, kanjiData]);
-  //   } else {
-  //     const filteredKanji = savedKanji.filter(k => k._id !== kanji._id);
-  //     setSavedKanji(filteredKanji);
-  //     setPendingKanji(filteredKanji);
-  //   }
-  // }
 
   return (
     <>

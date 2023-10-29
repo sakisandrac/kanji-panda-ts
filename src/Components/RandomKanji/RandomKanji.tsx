@@ -4,12 +4,13 @@ import unchecked from'../../images/check.png';
 import checked from '../../images/check-filled.png';
 import { useLocation } from 'react-router-dom';
 import { KanjiData, KanjiData2, KanjiResponse} from '../../types';
+import { getSavedKanji, patchStudied } from '../../apiCalls';
 
 interface RandomKanjiProps {
   studiedKanji?: KanjiData2[],
   setStudiedKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   mainKanji: any,
-  saveKanji:  ( user:string, kanji: KanjiData ) => Promise<void>,
+  saveKanji: ( user:string, kanji: KanjiData ) => Promise<void>,
   savedKanji: KanjiData2[],
   setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   user: string 
@@ -18,29 +19,22 @@ interface RandomKanjiProps {
 const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
 
- const studied = studiedKanji?.some(k => k._id === mainKanji?._id);
-
- const addToStudied = (mainKanji: any) => {
-   if (setStudiedKanji) {
-     if (!studied) {
-       mainKanji.studied = true;
-       setStudiedKanji(prev => [...prev, mainKanji]);
-       if(setPendingKanji) {
-        const pend =  savedKanji.filter(k => k.studied === false)
-        setPendingKanji(pend)
-       }
-     } else {
-       mainKanji.studied = false;
-       setStudiedKanji(prev => prev.filter(k => k._id !== mainKanji._id));
-       if(setPendingKanji) {
-        setPendingKanji(savedKanji.filter(k => k.studied === false))
-       }
-     }
-   }
- }
+//  useEffect(() => {
+//   console.log('main', mainKanji)
+//   console.log('studied', studiedKanji)
+// },[studiedKanji, mainKanji])
 
  const handleClick = (user: string, mainKanji: KanjiData)=> {
   saveKanji(user, mainKanji)
+ }
+
+ const toggleStudied = () => {
+  patchStudied(user, mainKanji.k_id).then(data => {
+    console.log(data)
+    setStudiedKanji && setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied));
+    setPendingKanji && setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied));
+  })
+
  }
  
   return (
@@ -49,7 +43,7 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStud
       {location.pathname.includes('saved') && 
           <div className='check-container'>
             <p className='studied-text'><b>Studied?</b></p>
-            <img onClick={() => addToStudied(mainKanji)} className='check-icon' src={studied ? checked : unchecked} alt="check button icon"/>
+            <img onClick={toggleStudied} className='check-icon' src={mainKanji.studied ? checked : unchecked} alt="check button icon"/>
           </div>}
         <p className='main-char'>{mainKanji?.k_utf ? mainKanji?.k_utf : mainKanji?.ka_utf}</p>
         <div className='description'>

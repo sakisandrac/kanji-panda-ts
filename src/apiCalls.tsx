@@ -50,7 +50,6 @@ const saveKanji = async (user: string, kanji: KanjiData) => {
     })
   })
 
-console.log(res)
   if(!res.ok) {
     console.log(res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);
@@ -65,7 +64,27 @@ const getSavedKanji = async (user: string) => {
     method: 'GET',
   })
 
-console.log(res)
+  if(!res.ok) {
+    console.log(res.statusText);
+    throw new Error(`${res.statusText} - Please Try Again`);
+  };
+
+  const data = await res.json();
+  return data;
+}
+
+const patchStudied = async (user: string, k_id: string) => {
+  console.log(user, k_id)
+  const res = await fetch(`http://localhost:3003/api/v1/kanji/`, {
+    method: 'PATCH',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      user_id: user,
+      k_id,
+    })
+  })
+
+  console.log(res)
   if(!res.ok) {
     console.log(res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);
@@ -76,4 +95,4 @@ console.log(res)
 }
 
 
-export { getSingleKanji, getKanji, saveKanji, getSavedKanji }
+export { getSingleKanji, getKanji, saveKanji, getSavedKanji, patchStudied }
