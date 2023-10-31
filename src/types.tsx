@@ -12,7 +12,8 @@ export interface ErrorType {
 }
 
 export interface KanjiData2 {
-  _id: string,
+  _id?: string,
+  k_id?: string,
   ka_utf: string,
   meaning: string,
   kunyomi: string,

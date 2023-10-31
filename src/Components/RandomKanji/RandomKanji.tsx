@@ -18,11 +18,21 @@ interface RandomKanjiProps {
 
 const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
+ const studied = studiedKanji?.some(k => k.k_id === mainKanji?.k_id);
 
-//  useEffect(() => {
-//   console.log('main', mainKanji)
-//   console.log('studied', studiedKanji)
-// },[studiedKanji, mainKanji])
+ useEffect(() => {
+  console.log(studiedKanji?.some(k => {
+    // console.log('kid', k.k_)
+    return k.k_id === mainKanji?.k_id
+  }))
+},[])
+
+
+useEffect(() => {
+  console.log('studied', studiedKanji)
+console.log('min', mainKanji)
+}, [studiedKanji])
+
 
  const handleClick = (user: string, mainKanji: KanjiData)=> {
   saveKanji(user, mainKanji)
@@ -43,7 +53,7 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStud
       {location.pathname.includes('saved') && 
           <div className='check-container'>
             <p className='studied-text'><b>Studied?</b></p>
-            <img onClick={toggleStudied} className='check-icon' src={mainKanji.studied ? checked : unchecked} alt="check button icon"/>
+            <img onClick={toggleStudied} className='check-icon' src={studied ? checked : unchecked} alt="check button icon"/>
           </div>}
         <p className='main-char'>{mainKanji?.k_utf ? mainKanji?.k_utf : mainKanji?.ka_utf}</p>
         <div className='description'>
