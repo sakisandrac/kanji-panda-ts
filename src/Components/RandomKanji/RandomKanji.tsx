@@ -3,20 +3,21 @@ import './RandomKanji.css';
 import unchecked from'../../images/check.png';
 import checked from '../../images/check-filled.png';
 import { useLocation } from 'react-router-dom';
-import { KanjiData, KanjiData2, KanjiResponse} from '../../types';
+import { KanjiData, KanjiData2, KanjiResponse, SaveKanjiResponse} from '../../types';
 import { getSavedKanji, patchStudied } from '../../apiCalls';
 
 interface RandomKanjiProps {
   studiedKanji?: KanjiData2[],
   setStudiedKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
   mainKanji: any,
-  saveKanji: ( user:string, kanji: KanjiData ) => Promise<void>,
+  saveKanji: ( user:string, kanji: KanjiData ) => Promise<SaveKanjiResponse>,
   savedKanji: KanjiData2[],
   setPendingKanji?: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
-  user: string 
+  user: string,
+  setSavedKanji: React.Dispatch<React.SetStateAction<KanjiData2[] | KanjiResponse[]>>
 }
 
-const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
+const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setSavedKanji, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
  const studied = studiedKanji?.some(k => k.k_id === mainKanji?.k_id);
 
@@ -34,8 +35,13 @@ console.log('min', mainKanji)
 }, [studiedKanji])
 
 
- const handleClick = (user: string, mainKanji: KanjiData)=> {
-  saveKanji(user, mainKanji)
+ const handleClick = ()=> {
+  // console.log(mainKanji)
+  saveKanji(user, mainKanji).then(data => {
+    console.log('databack', data.data)
+    console.log('saved', savedKanji)
+    setSavedKanji(data.data)
+  })
  }
 
  const toggleStudied = () => {
@@ -61,7 +67,7 @@ console.log('min', mainKanji)
           <p className='kanji-text'><b>Onyomi Pronounciation:</b> <i>{mainKanji?.onyomi}</i></p>
           <p className='mainKanji-text'><b>Kunyomi Pronounciation:</b> <i>{mainKanji?.kunyomi}</i></p>
         </div>
-        {mainKanji && <button className='save-btn' onClick={() => {handleClick(user, mainKanji)}}>{savedKanji?.some(k => k._id === mainKanji._id) ? "Unsave" : "Save"} Kanji</button>}
+        {mainKanji && <button className='save-btn' onClick={handleClick}>{savedKanji?.some(k => k._id === mainKanji._id) ? "Unsave" : "Save"} Kanji</button>}
       </div>
     </section>
   )

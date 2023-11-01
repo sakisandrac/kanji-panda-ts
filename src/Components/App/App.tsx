@@ -14,7 +14,7 @@ import Quiz from '../Quiz/Quiz';
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
   const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
-  const [savedKanji, setSavedKanji] = useState<KanjiData2[]>([]);
+  const [savedKanji, setSavedKanji] = useState<KanjiData2[] | KanjiResponse[]>([]);
   const [error, setError] = useState<ErrorType>({error: false, message: ""});
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
   const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([]);
@@ -81,9 +81,10 @@ useEffect(() => {
           kanjiSet={kanjiSet} 
           mainKanji={mainKanji}
           setGetNewSet={setGetNewSet}
-          changeMainKanji={changeMainKanji}/>} />
-      <Route path="/saved" element={<SavedKanji pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
-      <Route path="/search" element={<SearchPage user={user} saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
+          changeMainKanji={changeMainKanji}
+          setSavedKanji={setSavedKanji}/>} />
+      <Route path="/saved" element={<SavedKanji setSavedKanji={setSavedKanji} pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji}/>}/>
+      <Route path="/search" element={<SearchPage setSavedKanji={setSavedKanji} user={user} saveKanji={saveKanji} savedKanji={savedKanji}/>}/>
       <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />}/>
       <Route path="*" element={<ErrorMsg message={"404"} />}/>
     </Routes>

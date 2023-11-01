@@ -2,27 +2,29 @@ import React, { useState, useEffect } from 'react';
 import RandomKanji from '../RandomKanji/RandomKanji';
 import './SavedKanji.css';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
-import { KanjiData, KanjiData2 } from '../../types';
+import { KanjiData, KanjiData2, KanjiResponse, SaveKanjiResponse } from '../../types';
 import { Link } from 'react-router-dom';
 import Charts from '../Charts/Charts';
 
 interface SavedKanjiProps {
   studiedKanji: KanjiData2[],
   setStudiedKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
-  saveKanji: (user: string, kanji: KanjiData) => Promise<void>,
+  saveKanji: (user: string, kanji: KanjiData) => Promise<SaveKanjiResponse>,
   savedKanji: KanjiData2[],
   pendingKanji: KanjiData2[],
   setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>
   user: string
+  setSavedKanji: React.Dispatch<React.SetStateAction<KanjiData2[] | KanjiResponse[]>>
 }
 
-const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, user, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
+const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setSavedKanji, setPendingKanji, user, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
   const [viewMode, setViewMode] = useState<string>("saved");
 
-  // useEffect(() => {
-  //   console.log('studied', studiedKanji)
-  //   console.log('peding', pendingKanji)
-  // }, [studiedKanji, pendingKanji])
+
+  useEffect(() => {
+    console.log('studied', studiedKanji)
+    console.log('peding', pendingKanji)
+  }, [studiedKanji, pendingKanji])
 
   const displayKanji = (view: string): any[] => {
     let kanjiSet: any[] = []
@@ -49,7 +51,7 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setPendingKanji, 
 
     return displayKanji(view).map(k => {
       return (
-        <RandomKanji key={k._id} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} user={user} savedKanji={savedKanji} />
+        <RandomKanji key={k._id} setSavedKanji={setSavedKanji} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} user={user} savedKanji={savedKanji} />
       )
     })
   }
