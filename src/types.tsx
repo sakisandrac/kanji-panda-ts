@@ -14,7 +14,7 @@ export interface ErrorType {
 export interface KanjiData2 {
   _id?: string,
   k_id?: string,
-  ka_utf: string,
+  ka_utf?: string,
   meaning: string,
   kunyomi: string,
   onyomi: string,
@@ -30,4 +30,8 @@ export interface KanjiResponse {
   studied: boolean,
   updated_at: string,
   created_at: string
+}
+
+export interface SaveKanjiResponse {
+  data: KanjiResponse[]
 }

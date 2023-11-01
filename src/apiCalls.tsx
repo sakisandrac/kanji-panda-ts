@@ -1,4 +1,4 @@
-import { KanjiData } from "./types";
+import { KanjiData, KanjiResponse, SaveKanjiResponse } from "./types";
 
 const getKanji = async () => {
   const res = await fetch(`https://kanjialive-api.p.rapidapi.com/api/public/search/advanced/`, {
@@ -36,13 +36,14 @@ const getSingleKanji = async (type: string, char: string) => {
   return data;
 }
 
-const saveKanji = async (user: string, kanji: KanjiData) => {
+const saveKanji = async (user: string, kanji: any): Promise<SaveKanjiResponse> => {
+  console.log(kanji)
   const res = await fetch(`http://localhost:3003/api/v1/kanji/`, {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      k_id: kanji._id,
-      k_utf: kanji.ka_utf,
+      k_id: kanji._id || kanji.k_id,
+      k_utf: kanji.ka_utf || kanji.k_utf,
       meaning: kanji.meaning,
       kunyomi: kanji.kunyomi,
       onyomi: kanji.onyomi,
