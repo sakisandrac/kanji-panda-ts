@@ -85,7 +85,7 @@ const patchStudied = async (user: string, k_id: string) => {
     })
   })
 
-  console.log(res)
+
   if(!res.ok) {
     console.log(res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);

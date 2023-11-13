@@ -24,7 +24,6 @@ const App: React.FC = () => {
   useEffect(() => {
     getSavedKanji(user).then(data => {
       setSavedKanji(data.data)
-      console.log(data.data)
       setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied))
       setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied))
     })
@@ -46,7 +45,6 @@ const getKanjiDetails = async (k: any) => {
 }
 
 useEffect(() => {
-
   getKanjiSet().then(set => {
     set.forEach(k => {
       try {

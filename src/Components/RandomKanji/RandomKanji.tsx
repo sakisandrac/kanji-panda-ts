@@ -20,44 +20,33 @@ interface RandomKanjiProps {
 const RandomKanji: React.FC<RandomKanjiProps> = ({setPendingKanji, user, setSavedKanji, setStudiedKanji, studiedKanji, mainKanji, saveKanji, savedKanji}) => {
  const location = useLocation();
  const studied = studiedKanji?.some(k => k.k_id === mainKanji?.k_id);
-
- useEffect(() => {
-  console.log(studiedKanji?.some(k => {
-    // console.log('kid', k.k_)
-    return k.k_id === mainKanji?.k_id
-  }))
-},[])
-
-
-useEffect(() => {
-  console.log('studied', studiedKanji)
-console.log('min', mainKanji)
-}, [studiedKanji])
-
+ const [error, setError] = useState<boolean>(false);
 
  const handleClick = ()=> {
-  // console.log(mainKanji)
   saveKanji(user, mainKanji).then(data => {
-    console.log('databack', data.data)
-    console.log('saved', savedKanji)
     setSavedKanji(data.data)
   })
  }
 
  const toggleStudied = () => {
   patchStudied(user, mainKanji.k_id).then(data => {
-    console.log(data)
+    setError(false);
+    console.log('data?', data.data)
+    setSavedKanji(data.data)
     setStudiedKanji && setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied));
     setPendingKanji && setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied));
   })
-
+  .catch(err => {
+    setError(true);
+  })
  }
- 
+
   return (
     <section className='main-kanji-container'>
       <div className='main-kanji'>
       {location.pathname.includes('saved') && 
           <div className='check-container'>
+            {error && <p>An error occured, please refresh!</p>}
             <p className='studied-text'><b>Studied?</b></p>
             <img onClick={toggleStudied} className='check-icon' src={studied ? checked : unchecked} alt="check button icon"/>
           </div>}
