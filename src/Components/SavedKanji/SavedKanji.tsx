@@ -20,12 +20,6 @@ interface SavedKanjiProps {
 const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setSavedKanji, setPendingKanji, user, studiedKanji, setStudiedKanji, saveKanji, savedKanji }) => {
   const [viewMode, setViewMode] = useState<string>("saved");
 
-  useEffect(() => {
-    console.log(studiedKanji)
-    console.log('pemd,', pendingKanji)
-    console.log('allsaved', savedKanji)
-   }, [studiedKanji, pendingKanji, viewMode])
-
   const displayKanji = (view: string): any[] => {
     let kanjiSet: any[] = []
 

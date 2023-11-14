@@ -15,6 +15,7 @@ export interface KanjiData2 {
   _id?: string,
   k_id?: string,
   ka_utf?: string,
+  k_utf?: string,
   meaning: string,
   kunyomi: string,
   onyomi: string,
