@@ -88,7 +88,7 @@ const SearchPage: React.FC<SearchPageProps> = ({saveKanji, user, savedKanji, set
     if(searchResult[0].error) {
       return <ErrorMsg message={"no results found"}/>
     } else {
-      return searchResult.map(kanji => <RandomKanji key={kanji._id} setSavedKanji={setSavedKanji} mainKanji={kanji}  saveKanji={saveKanji} user={user} savedKanji={savedKanji}/>)
+      return searchResult.map(kanji => <RandomKanji key={kanji.k_id} setSavedKanji={setSavedKanji} mainKanji={kanji}  saveKanji={saveKanji} user={user} savedKanji={savedKanji}/>)
     }
   }
 

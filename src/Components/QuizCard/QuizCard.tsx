@@ -22,7 +22,6 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
 
   const initialSet = () => {
     if (remainingCards.length > 0) {
-      console.log('initalset', remainingCards)
       const num = getRandNum(remainingCards.length)
       setRemainingCards(prev => prev.filter(k => k.k_id !== remainingCards[num].k_id));
       setFinishedCards(prev => [...prev, remainingCards[num]]);
@@ -63,10 +62,7 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
   }
 
   useEffect(() => {
-    console.log('remaining', remainingCards)
-    console.log('finished', finishedCards)
     setFinalScore(calculateScore())
-    console.log(correctCards)
   }, [isFinished])
 
   const restartQuiz = () => {

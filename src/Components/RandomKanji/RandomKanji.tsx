@@ -62,7 +62,7 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({ setPendingKanji, user, setSav
           <p className='kanji-text'><b>Onyomi Pronounciation:</b> <i>{mainKanji?.onyomi}</i></p>
           <p className='mainKanji-text'><b>Kunyomi Pronounciation:</b> <i>{mainKanji?.kunyomi}</i></p>
         </div>
-        {mainKanji && <button className='save-btn' onClick={handleClick}>{savedKanji?.some(k => k._id === mainKanji._id) ? "Unsave" : "Save"} Kanji</button>}
+        {mainKanji && <button className='save-btn' onClick={handleClick}>{savedKanji?.some(k => k.k_id === mainKanji.k_id) ? "Unsave" : "Save"} Kanji</button>}
         {unsave && <p>Kanji Saved!</p>}
       </div>
     </section>

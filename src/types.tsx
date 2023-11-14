@@ -4,6 +4,7 @@ export interface KanjiData {
   meaning: string,
   kunyomi: string,
   onyomi: string
+  k_id?: string
 }
 
 export interface ErrorType {

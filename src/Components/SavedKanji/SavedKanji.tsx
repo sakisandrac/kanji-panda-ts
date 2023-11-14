@@ -45,7 +45,7 @@ const SavedKanji: React.FC<SavedKanjiProps> = ({ pendingKanji, setSavedKanji, se
 
     return displayKanji(view).map(k => {
       return (
-        <RandomKanji key={k._id} setSavedKanji={setSavedKanji} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} user={user} savedKanji={savedKanji} />
+        <RandomKanji key={k.k_id} setSavedKanji={setSavedKanji} setPendingKanji={setPendingKanji} setStudiedKanji={setStudiedKanji} studiedKanji={studiedKanji} mainKanji={k} saveKanji={saveKanji} user={user} savedKanji={savedKanji} />
       )
     })
   }

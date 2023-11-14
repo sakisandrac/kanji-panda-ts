@@ -42,13 +42,11 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
   }
 
   const allSavedMode = () => {
-    console.log('hello', savedKanji)
     setQuizSet(savedKanji);
     setStart(true)
   }
 
   const onlyPendingMode = () => {
-    console.log(pendingKanji)
     setQuizSet(pendingKanji)
     setStart(true)
   }
