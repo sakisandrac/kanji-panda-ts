@@ -34,7 +34,8 @@ const App: React.FC = () => {
       setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied))
     })
   }
-}, [])
+  console.log(user)
+}, [user])
 
 const logIn = (userID: string) => {
   setUser(userID);

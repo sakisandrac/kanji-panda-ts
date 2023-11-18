@@ -21,7 +21,7 @@ const Login = ({ logIn }: LoginProps) => {
             <div className='login-container'>
                 <div className='demo-container'>
                     <h1 className='login-header'>Try the app demo</h1>
-                    <button className="login-button" onClick={() => logIn("115072d9-2694-42c5-9f9d-b9960237536b")}></button>
+                    <button className="login-button" onClick={() => logIn("115072d9-2694-42c5-9f9d-b9960237536b")}>DEMO</button>
                 </div>
                 <div>
                     <p className='login-header'>Login To Continue</p>
@@ -35,7 +35,7 @@ const Login = ({ logIn }: LoginProps) => {
                             try {
                                 console.log('here')
                                 const postUserInfo = await postUser(decodedJwt.name, decodedJwt.sub, decodedJwt.email)
-                                logIn(postUserInfo.user_id)
+                                logIn(postUserInfo.data.user_id)
                                 console.log('hello', postUserInfo)
                             } catch (error) {
                                 console.log('failed')
