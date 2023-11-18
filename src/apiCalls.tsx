@@ -38,7 +38,7 @@ const getSingleKanji = async (type: string, char: string) => {
 
 const saveKanji = async (user: string, kanji: any): Promise<SaveKanjiResponse> => {
   console.log(kanji)
-  const res = await fetch(`http://localhost:3003/api/v1/kanji/`, {
+  const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/`, {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
@@ -61,7 +61,8 @@ const saveKanji = async (user: string, kanji: any): Promise<SaveKanjiResponse> =
 }
 
 const getSavedKanji = async (user: string) => {
-  const res = await fetch(`http://localhost:3003/api/v1/kanji/${user}`, {
+  console.log(user)
+  const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/${user}`, {
     method: 'GET',
   })
 
@@ -76,7 +77,7 @@ const getSavedKanji = async (user: string) => {
 
 const patchStudied = async (user: string, k_id: string) => {
   console.log(user, k_id)
-  const res = await fetch(`http://localhost:3003/api/v1/kanji/`, {
+  const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/`, {
     method: 'PATCH',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({

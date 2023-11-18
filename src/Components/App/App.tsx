@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
   const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([]);
   const [getNewSet, setGetNewSet] = useState<boolean>(false);
-  const [user, setUser] = useState<string>("user2");
+  const [user, setUser] = useState<string>("115072d9-2694-42c5-9f9d-b9960237536b");
 
   useEffect(() => {
     getSavedKanji(user).then(data => {
