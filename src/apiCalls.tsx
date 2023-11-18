@@ -96,5 +96,26 @@ const patchStudied = async (user: string, k_id: string) => {
   return data;
 }
 
+const postUser = async (name: string, authId: string, email: string) =>{
+  const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/user/`, {
+    method: 'POST',
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name, 
+      auth_id: authId,
+      email,
+    })
+  })
 
-export { getSingleKanji, getKanji, saveKanji, getSavedKanji, patchStudied }
+
+  if(!res.ok) {
+    console.log(res.statusText);
+    throw new Error(`${res.statusText} - Please Try Again`);
+  };
+
+  const data = await res.json();
+  return data;
+}
+
+
+export { getSingleKanji, getKanji, saveKanji, getSavedKanji, patchStudied, postUser }
