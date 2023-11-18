@@ -86,7 +86,7 @@ useEffect(() => {
   return (
     <>
       <div className="App">
-        <Nav />
+        <Nav logIn={logIn} user={user}/>
       </div>
       <Routes>
         <Route path="/" element={user ?
