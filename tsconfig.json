@@ -28,5 +28,6 @@
     "Components/Quiz/Quiz.tsx",
     "Components/QuizCard/QuizCard.tsx",
     "Components/Homepage/Homepage.tsx"
-  ]
+  ],
+  "types": ["cypress","cypress-xpath","node","mocha"]
 }

@@ -107,7 +107,6 @@ const postUser = async (name: string, authId: string, email: string) =>{
     })
   })
 
-
   if(!res.ok) {
     console.log(res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);
