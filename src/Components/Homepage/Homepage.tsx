@@ -3,7 +3,7 @@ import RandomKanji from '../RandomKanji/RandomKanji';
 import './Homepage.css'
 import KanjiSet from '../KanjiSet/KanjiSet';
 import ErrorMsg from '../ErrorMsg/ErrorMsg';
-import { KanjiData, KanjiData2, ErrorType } from '../../types';
+import { KanjiData, KanjiData2, ErrorType, SaveKanjiResponse, KanjiResponse } from '../../types';
 import panda from '../../images/panda.png';
 
 interface HomepageProps {
@@ -14,13 +14,15 @@ interface HomepageProps {
   mainKanji: KanjiData | undefined,
   kanjiSet: KanjiData[],
   changeMainKanji: (kanji: KanjiData) => void,
-  saveKanji: (kanji: KanjiData) => void,
+  saveKanji: (user:string, kanji: KanjiData) => Promise<SaveKanjiResponse>,
+  user: string
   savedKanji: KanjiData2[],
   setPendingKanji: React.Dispatch<React.SetStateAction<KanjiData2[]>>,
-  setGetNewSet: React.Dispatch<React.SetStateAction<boolean>>
+  setGetNewSet: React.Dispatch<React.SetStateAction<boolean>>,
+  setSavedKanji: React.Dispatch<React.SetStateAction<KanjiData2[] | KanjiResponse[]>>
 }
 
-const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, setPendingKanji, studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji }) => {
+const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, user, setSavedKanji, setPendingKanji, studiedKanji, setStudiedKanji, error, setKanjiSet, mainKanji, kanjiSet, changeMainKanji, saveKanji, savedKanji }) => {
 
   const openModal = () => {
     const modal: HTMLDialogElement = document.querySelector('#aboutModal') as HTMLDialogElement
@@ -55,7 +57,7 @@ const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, setPendingKanji, stud
           </div>
         </dialog>
         {error.error && <ErrorMsg message={error.message} />}
-        <RandomKanji setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} mainKanji={mainKanji} savedKanji={savedKanji} />
+        <RandomKanji setSavedKanji={setSavedKanji} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} saveKanji={saveKanji} user={user} mainKanji={mainKanji} savedKanji={savedKanji} />
         <KanjiSet setGetNewSet={setGetNewSet} setKanjiSet={setKanjiSet} kanjiSet={kanjiSet} changeMainKanji={changeMainKanji} />
       </main>
     </div>

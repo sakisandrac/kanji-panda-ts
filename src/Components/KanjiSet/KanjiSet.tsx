@@ -14,7 +14,7 @@ const KanjiSet: React.FC<KanjiSetProps> = ({setGetNewSet, kanjiSet, changeMainKa
   const renderKanjiSet = () => {
     return kanjiSet?.map(kanji => {
       return (
-        <div className='kanji-container' key={kanji._id} onClick={() => {changeMainKanji(kanji)}}>
+        <div className='kanji-container' key={kanji.k_id} onClick={() => {changeMainKanji(kanji)}}>
           <p className='kanji-set-char'>{kanji.ka_utf}</p>
           <p className='kanji-text'><b>Meaning:</b> <i>{kanji.meaning}</i></p>
         </div>

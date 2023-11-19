@@ -23,7 +23,6 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
     const value = (e.target as HTMLInputElement).value;
 
     if(value === 'correct') {
-      console.log('heree')
       setCorrectCards(prev => [...prev, currentCard])
     } else {
       setIncorrectCards(prev => [...prev, currentCard])
@@ -48,7 +47,6 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
   }
 
   const onlyPendingMode = () => {
-    console.log(pendingKanji)
     setQuizSet(pendingKanji)
     setStart(true)
   }
@@ -56,7 +54,7 @@ const Quiz: React.FC<QuizProps> = ({setPendingKanji, pendingKanji, savedKanji}) 
   useEffect(() => {
     setCorrectCards([])
     setIncorrectCards([])
-    setPendingKanji(savedKanji.filter(k => k.studied === false))
+    setPendingKanji(savedKanji.filter(k => !k.studied))
   },[start])
 
   return (

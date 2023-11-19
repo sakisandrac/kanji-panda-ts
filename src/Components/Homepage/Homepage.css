@@ -1,4 +1,4 @@
-.main-container, .search-page, .error-page{
+.main-container, .login-page, .search-page, .error-page{
   display: flex;
   justify-content: center;
   height: 100vh;

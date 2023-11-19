@@ -4,6 +4,7 @@ export interface KanjiData {
   meaning: string,
   kunyomi: string,
   onyomi: string
+  k_id?: string
 }
 
 export interface ErrorType {
@@ -12,10 +13,27 @@ export interface ErrorType {
 }
 
 export interface KanjiData2 {
-  _id: string,
-  ka_utf: string,
+  _id?: string,
+  k_id?: string,
+  ka_utf?: string,
+  k_utf?: string,
   meaning: string,
   kunyomi: string,
   onyomi: string,
   studied: boolean
+}
+
+export interface KanjiResponse {
+  k_id: string,
+  k_utf: string,
+  meaning: string,
+  kunyomi: string,
+  onyomi: string,
+  studied: boolean,
+  updated_at: string,
+  created_at: string
+}
+
+export interface SaveKanjiResponse {
+  data: KanjiResponse[]
 }
