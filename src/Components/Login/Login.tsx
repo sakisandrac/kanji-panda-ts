@@ -20,11 +20,11 @@ const Login = ({ logIn }: LoginProps) => {
         <div className='login-page'>
             <div className='login-container'>
                 <div className='demo-container'>
-                    <h1 className='login-header'>Try the app demo</h1>
-                    <button className="login-button" onClick={() => logIn("115072d9-2694-42c5-9f9d-b9960237536b")}>DEMO</button>
+                    <h1>Welcome to Kanji Panda!</h1>
+                    <button className="login-button" onClick={() => logIn("115072d9-2694-42c5-9f9d-b9960237536b")}>TRY THE APP DEMO</button>
                 </div>
                 <div>
-                    <p className='login-header'>Login To Continue</p>
+                    <p className='login-header'>OR Login To Continue</p>
                     <GoogleLogin
                         shape='pill'
                         size='large'
