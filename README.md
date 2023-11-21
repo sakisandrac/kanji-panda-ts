@@ -3,12 +3,14 @@ Unleash the power of kanji with this captivating study companion! Upon page load
 Try this app <a href="https://kanji-panda-ts.vercel.app/">here</a>!
 
 ## Technologies Used
-React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Chart.JS
+<b>Frontend:</b> React, TypeScript, React router v6, create-react-app, CSS, HTML, JavaScript, Chart.JS
+<b>Backend:</b> Node.JS, Express.JS, Knex.JS, PostgreSQL (<a href="https://github.com/sakisandrac/kanji-panda-BE">link to backend repo</a>)
 
 ## Why I Built This App:
 As someone whose family are first-generation immigrants, learning languages holds a special place in my heart. It's a way to connect with cultures worldwide and learning my own family’s language helped me connect with my heritage and background. I genuinely hope this application can be a valuable tool for others who share the same passion for language learning and aid them in mastering the Japanese language.
 
 ## Features: 
+- Users can log in with their Google Account, or choose to try the app with a demo account
 - Users can browse random kanji from the homepage, or search for kanji by English meaning or by the character itself
 - Users can save kanji they want to study, and mark them as studied when they have learned the character
 - Take a quiz based on all saved kanji or just kanji you haven't learned yet
