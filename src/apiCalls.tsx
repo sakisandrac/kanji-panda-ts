@@ -10,7 +10,6 @@ const getKanji = async () => {
   });
 
   if(!res.ok) {
-    console.log('this is　the error', res.statusText);
     throw new Error(`${res.statusText} - Please Try Again`);
   };
 
@@ -37,7 +36,6 @@ const getSingleKanji = async (type: string, char: string) => {
 }
 
 const saveKanji = async (user: string, kanji: any): Promise<SaveKanjiResponse> => {
-  console.log(kanji)
   const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/`, {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
@@ -61,7 +59,6 @@ const saveKanji = async (user: string, kanji: any): Promise<SaveKanjiResponse> =
 }
 
 const getSavedKanji = async (user: string) => {
-  console.log(user)
   const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/${user}`, {
     method: 'GET',
   })
@@ -76,7 +73,6 @@ const getSavedKanji = async (user: string) => {
 }
 
 const patchStudied = async (user: string, k_id: string) => {
-  console.log(user, k_id)
   const res = await fetch(`https://kanji-panda-be.onrender.com/api/v1/kanji/`, {
     method: 'PATCH',
     headers: {"Content-Type": "application/json"},

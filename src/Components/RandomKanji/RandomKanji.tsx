@@ -37,7 +37,6 @@ const RandomKanji: React.FC<RandomKanjiProps> = ({ setPendingKanji, user, setSav
   const toggleStudied = () => {
     patchStudied(user, mainKanji.k_id).then(data => {
       setError(false);
-      console.log('data?', data.data)
       setSavedKanji(data.data)
       setStudiedKanji && setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied));
       setPendingKanji && setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied));

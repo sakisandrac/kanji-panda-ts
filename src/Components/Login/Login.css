@@ -1,20 +1,28 @@
-.login-container {
-    margin-top: 100px;
-    display: flex;
+.login-page {
     flex-direction: column;
+    align-items: center;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
     border-radius: 20px;
     background-color: #eccfe084;
-    height: 50%;
+    height: 30%;
+    width: 60%;
     padding: 20px;
+}
+
+.login-container img {
+    height: 50%;
 }
 
 .demo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .login-header {
@@ -33,6 +41,19 @@
     cursor: pointer;
 }   
 
-.login-button:hover {
-    background-color:  white;
+.about-btn {
+    margin-top: 30px;
+    padding: 20px;
+    width: 200px;
+    font-size: 1rem;
+}
+
+@media (max-width: 650px) {
+    .login-container {
+        flex-direction: column;
+        height: 60%;
+    }
+    .login-container img {
+        height: 30%;
+    }
 }

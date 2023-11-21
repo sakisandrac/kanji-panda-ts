@@ -49,7 +49,6 @@ const QuizCard: React.FC<QuizCardProps>= ({correctCards, quizSet, sortCards, set
   }
 
   const renderCards = () => {
-    console.log('card', currentCard[0].k_utf)
     return (
       <div className='main-kanji'>
         <p className='main-char'>{currentCard[0].k_utf}</p>

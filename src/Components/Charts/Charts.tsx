@@ -49,15 +49,10 @@ const Charts: React.FC<ChartsProps> = ({labels, title, variables}) => {
   }
   
   return (
-    // <div className='main-container'>
-      // <div className='dashboard'>
         <div className='chart-container'>
           <p className='chart-header'>My Progress</p>
           <Doughnut data={data} />
-          {/* {chartKey()} */}
         </div>
-      // </div>
-    // </div>
   )
 }
 

@@ -11,67 +11,40 @@ import ErrorMsg from '../ErrorMsg/ErrorMsg';
 import { KanjiData, KanjiData2, ErrorType, KanjiResponse } from '../../types';
 import Quiz from '../Quiz/Quiz';
 import Login from '../Login/Login';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import { gapi } from 'gapi-script';
 
 const App: React.FC = () => {
   const [mainKanji, setMainKanji] = useState<KanjiData>();
   const [kanjiSet, setKanjiSet] = useState<KanjiData[]>([]);
   const [savedKanji, setSavedKanji] = useState<KanjiData2[] | KanjiResponse[]>([]);
-  const [error, setError] = useState<ErrorType>({error: false, message: ""});
+  const [error, setError] = useState<ErrorType>({ error: false, message: "" });
   const [studiedKanji, setStudiedKanji] = useState<KanjiData2[]>([]);
   const [pendingKanji, setPendingKanji] = useState<KanjiData2[]>([]);
   const [getNewSet, setGetNewSet] = useState<boolean>(false);
   const [user, setUser] = useState<string>("");
-  const clientId ="456181940726-60n8bgi8imq894m1j12u2frbp8me07po.apps.googleusercontent.com"
-  // "115072d9-2694-42c5-9f9d-b9960237536b"
+  const clientId = "456181940726-60n8bgi8imq894m1j12u2frbp8me07po.apps.googleusercontent.com";
 
   useEffect(() => {
-    if(user) {
-    getSavedKanji(user).then(data => {
-      setSavedKanji(data.data)
-      setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied))
-      setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied))
-    })
-  }
-  console.log(user)
-}, [user])
+    if (user) {
+      getSavedKanji(user).then(data => {
+        setSavedKanji(data.data)
+        setStudiedKanji(data.data.filter((k: KanjiResponse) => k.studied))
+        setPendingKanji(data.data.filter((k: KanjiResponse) => !k.studied))
+      })
+    }
+  }, [user])
 
-const logIn = (userID: string) => {
-  setUser(userID);
-  console.log(user)
-}
-
-const getKanjiSet = async () => {
-  const kData = await getKanji()
-  const set = []
-  for (let i = 0; i < 5; i++) {
-    set.push(kData[getRandNum(kData.length)].kanji.character);
-  }
-  return set
-}
-
-const getKanjiDetails = async (k: any) => {
-  const data = await getSingleKanji('kanji', k);
-  setKanjiSet(prev => [...prev, cleanUpData(data)]);
-  setMainKanji(data);
-}
-
-useEffect(() => {
-  getKanjiSet().then(set => {
-    set.forEach(k => {
-      try {
-        getKanjiDetails(k)
-      } catch (err) {
-        setError({ error: true, message: `${err}` });
-      }
-    })
-  }).catch(err => setError({ error: true, message: `${err}` }))
-}, [getNewSet])
-
-  const changeMainKanji = (kanji: KanjiData) => {
-    setMainKanji(kanji);
-  }
+  useEffect(() => {
+    getKanjiSet().then(set => {
+      set.forEach(k => {
+        try {
+          getKanjiDetails(k)
+        } catch (err) {
+          setError({ error: true, message: `${err}` });
+        }
+      })
+    }).catch(err => setError({ error: true, message: `${err}` }))
+  }, [getNewSet])
 
   useEffect(() => {
     const start = () => {
@@ -81,12 +54,35 @@ useEffect(() => {
       })
     }
     gapi.load('client:auth2', start)
-  },[])
+  }, [])
+
+  const logIn = (userID: string) => {
+    setUser(userID);
+  }
+
+  const getKanjiSet = async () => {
+    const kData = await getKanji();
+    const set = [];
+    for (let i = 0; i < 5; i++) {
+      set.push(kData[getRandNum(kData.length)].kanji.character);
+    }
+    return set;
+  }
+
+  const getKanjiDetails = async (k: any) => {
+    const data = await getSingleKanji('kanji', k);
+    setKanjiSet(prev => [...prev, cleanUpData(data)]);
+    setMainKanji(data);
+  }
+
+  const changeMainKanji = (kanji: KanjiData) => {
+    setMainKanji(kanji);
+  }
 
   return (
     <>
       <div className="App">
-        <Nav logIn={logIn} user={user}/>
+        <Nav logIn={logIn} user={user} />
       </div>
       <Routes>
         <Route path="/" element={user ?
@@ -105,9 +101,9 @@ useEffect(() => {
             changeMainKanji={changeMainKanji}
             setSavedKanji={setSavedKanji} />
           : <Login logIn={logIn} />} />
-        <Route path="/saved" element={<SavedKanji setSavedKanji={setSavedKanji} pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji} />} />
-        <Route path="/search" element={<SearchPage setSavedKanji={setSavedKanji} user={user} saveKanji={saveKanji} savedKanji={savedKanji} />} />
-        <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />} />
+        <Route path="/saved" element={user ? <SavedKanji setSavedKanji={setSavedKanji} pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji} /> : <Login logIn={logIn} />} />
+        <Route path="/search" element={user ? <SearchPage setSavedKanji={setSavedKanji} user={user} saveKanji={saveKanji} savedKanji={savedKanji} /> : <Login logIn={logIn} />} />
+        <Route path="/quiz" element={user ? <Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} /> : <Login logIn={logIn} />} />
         <Route path="*" element={<ErrorMsg message={"404"} />} />
       </Routes>
     </>
