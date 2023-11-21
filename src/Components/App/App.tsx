@@ -101,9 +101,9 @@ const App: React.FC = () => {
             changeMainKanji={changeMainKanji}
             setSavedKanji={setSavedKanji} />
           : <Login logIn={logIn} />} />
-        <Route path="/saved" element={<SavedKanji setSavedKanji={setSavedKanji} pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji} />} />
-        <Route path="/search" element={<SearchPage setSavedKanji={setSavedKanji} user={user} saveKanji={saveKanji} savedKanji={savedKanji} />} />
-        <Route path="/quiz" element={<Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} />} />
+        <Route path="/saved" element={user ? <SavedKanji setSavedKanji={setSavedKanji} pendingKanji={pendingKanji} user={user} setPendingKanji={setPendingKanji} studiedKanji={studiedKanji} setStudiedKanji={setStudiedKanji} savedKanji={savedKanji} saveKanji={saveKanji} /> : <Login logIn={logIn} />} />
+        <Route path="/search" element={user ? <SearchPage setSavedKanji={setSavedKanji} user={user} saveKanji={saveKanji} savedKanji={savedKanji} /> : <Login logIn={logIn} />} />
+        <Route path="/quiz" element={user ? <Quiz setPendingKanji={setPendingKanji} savedKanji={savedKanji} pendingKanji={pendingKanji} /> : <Login logIn={logIn} />} />
         <Route path="*" element={<ErrorMsg message={"404"} />} />
       </Routes>
     </>
