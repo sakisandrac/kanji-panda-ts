@@ -27,9 +27,6 @@ const Homepage: React.FC<HomepageProps> = ({ setGetNewSet, user, setSavedKanji, 
   return (
     <div className='main-container'>
       <main className='dashboard'>
-        <div className='about-container'>
-          <img className='small-panda' src={panda} alt='panda icon' />
-        </div>
         <h1 className='header'>Let's Study Kanji!</h1>
         <article className='info-home-box'><p className='info-text'>Click on a Kanji to see more details, and save!</p></article>
         {error.error && <ErrorMsg message={error.message} />}
