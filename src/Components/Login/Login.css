@@ -1,5 +1,9 @@
+.login-page {
+    flex-direction: column;
+    align-items: center;
+}
+
 .login-container {
-    margin-top: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,8 +41,11 @@
     cursor: pointer;
 }   
 
-.login-button:hover {
-    background-color:  white;
+.about-btn {
+    margin-top: 30px;
+    padding: 20px;
+    width: 200px;
+    font-size: 1rem;
 }
 
 @media (max-width: 650px) {
