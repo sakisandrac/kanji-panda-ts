@@ -13,10 +13,9 @@ interface NavProps {
   user: string
 }
 
-
-const Nav = ({logIn, user}: NavProps) => {
+const Nav: React.FC<NavProps> = ({logIn, user}) => {
   const logout = () => {
-    logIn("")
+    logIn("");
   }
 
   return (
