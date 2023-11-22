@@ -11,7 +11,7 @@ interface LoginProps {
 
 const Login = ({ logIn }: LoginProps) => {
     const [error, setError] = useState<Error | null>(null)
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         return () => {
