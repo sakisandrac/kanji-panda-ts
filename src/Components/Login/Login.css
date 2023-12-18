@@ -62,3 +62,7 @@
         height: 30%;
     }
 }
+
+textInput {
+    border: 1px solid black;
+}
