@@ -57,6 +57,7 @@
     .login-container {
         flex-direction: column;
         height: 60%;
+        width: 80%;
     }
     .login-container img {
         height: 30%;
